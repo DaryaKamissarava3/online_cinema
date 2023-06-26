@@ -1,34 +1,29 @@
-import {BrowserRouter, Route, Routes, Navigate} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
-import {auth} from "../redux/actions/user";
-import MainPage from "./MainPage/MainPage";
-import Navigation from "./NavigationComponents/Navigation/Navigation";
-import Registration from "./Authorization/Registration";
-import Login from "./Authorization/Login";
-import Cart from "./CartComponents/Cart";
-import Wishlist from "./NavigationComponents/Wishlist";
-import ProductDetails from "./ProductsComponents/ProductDetails";
-import AdminPanel from "./AdminPanel/AdminPanel";
+import React, {useEffect} from 'react';
+import {BrowserRouter, Navigate, Route, Routes, useNavigate} from 'react-router-dom';
+import {Login} from '../pages/Login';
+import {Registration} from '../pages/Registration';
+import {MainPage} from '../pages/MainPage';
+import {authStatuses} from '../constants/authStatuses';
+import {useSelector} from 'react-redux';
+import {Navigation} from './Navigation';
 
 function App() {
-  const isAuth = useSelector(state => state.user.isAuth)
-  const dispatch = useDispatch()
-
+  const loggedOut = useSelector((state) => state.auth.status !== authStatuses.loggedIn);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(auth())
-  }, [])
-
-
+    if (loggedOut) {
+      navigate("/login");
+    }
+  }, [loggedOut])
 
   return (
-    <BrowserRouter>
+
       <div className="app">
         <Navigation />
         <div className="wrap">
 
-          {!isAuth ?
+          {loggedOut ?
             <Routes>
               <Route path="/registration" element={<Registration/>}/>
               <Route path="/login" element={<Login/>}/>
@@ -37,16 +32,11 @@ function App() {
             :
             <Routes>
               <Route path="/" element={<MainPage />}/>
-              <Route path="/admin" element={<AdminPanel />}/>
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/wishlist" element={<Wishlist />} />
-              <Route path="products/:id" element={<ProductDetails />}/>
               <Route path="*" element={<Navigate to="/" replace={true}/>}/>
             </Routes>
           }
         </div>
       </div>
-    </BrowserRouter>
   );
 }
 

@@ -1,0 +1,33 @@
+.header__container{
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background-color: #babaef;
+}
+
+.header__navigation{
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__block{
+  display: flex;
+  flex-direction: row;
+}
+
+.header__logo{
+  margin-left: 80px;
+  font-size: 30px;
+  font-weight: 600;
+  color: #4e2f86;
+}
+
+.nav__block__item{
+  margin-right: 20px;
+}

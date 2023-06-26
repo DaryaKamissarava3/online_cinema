@@ -1,0 +1,11 @@
+.navigation__container{
+  margin-bottom: 80px;
+}
+
+.navigation{
+  height: 70px;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  background-color: #a1b2f5;
+}

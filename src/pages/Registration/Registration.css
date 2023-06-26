@@ -1,0 +1,27 @@
+.register__container{
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+  height: 500px;
+  background-color: #f5b5a1;
+}
+
+.register__title{
+  margin-top: 50px;
+  margin-bottom: 20px;
+  font-size: 32px;
+  font-weight: 600;
+  color: #622c19;
+}
+
+.register__input{
+  margin: 15px;
+  width: 60%;
+}
+
+.register__btn{
+  margin: 40px;
+  width: 60%;
+}
