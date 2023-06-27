@@ -1,9 +1,13 @@
 import React from 'react';
+import {Button} from '@mui/material';
 import {Link} from 'react-router-dom';
 import {useSelector} from 'react-redux';
+
 import {authStatuses} from '../../constants/authStatuses';
+
+import {Header} from '../Header';
+
 import './Navigation.css';
-import {Button} from "@mui/material";
 
 export const Navigation = () => {
   const isAuth = useSelector((state) => state.auth.status === authStatuses.loggedIn)
@@ -21,6 +25,7 @@ export const Navigation = () => {
             <Link to="/registration" className="nav-registration">Registration</Link>
           </Button>
         }
+        {isAuth && <Header />}
       </div>
     </div>
   );

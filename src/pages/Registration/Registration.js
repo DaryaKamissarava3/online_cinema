@@ -1,11 +1,9 @@
 import React, {useState} from 'react';
 import {Button, Input} from '@mui/material';
-
-import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 
 import {updateProfile,createUserWithEmailAndPassword  } from 'firebase/auth';
-import {  doc, updateDoc,setDoc } from 'firebase/firestore';
+import {  doc,setDoc } from 'firebase/firestore';
 import {auth,db} from '../../firebase.config';
 
 import './Registration.css';
@@ -17,7 +15,6 @@ export const Registration = () => {
   const [lastName, setLastName] = useState('');
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const assignUserRole = (user, role) => {
     const userRef = doc(db, "users", user.uid);
@@ -52,6 +49,7 @@ export const Registration = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.error("Registration failed:", errorMessage);
+        console.error("Registration failed:", errorCode);
       });
   };
 

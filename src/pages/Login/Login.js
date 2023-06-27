@@ -1,14 +1,16 @@
 import React from 'react';
 import {Button, Input} from '@mui/material';
-import {useDispatch} from "react-redux";
+import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 
 import {setAuthStatus, setUser} from '../../store/actions';
 import {authStatuses} from '../../constants/authStatuses';
-import {signInWithEmailAndPassword} from "firebase/auth";
+
+import {signInWithEmailAndPassword} from 'firebase/auth';
+import {auth, db} from '../../firebase.config';
+import {doc, getDoc} from 'firebase/firestore';
 
 import './Login.css';
-import {auth} from "../../firebase.config";
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -22,14 +24,22 @@ export const Login = () => {
 
     if (email && password) {
       signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
+        .then(async (userCredential) => {
           const user = userCredential.user;
           console.log(user);
+
+          const userDocRef = doc(db, 'users', user.uid);
+          const userDocSnapshot = await getDoc(userDocRef);
+          let userRole = null;
+          if (userDocSnapshot.exists()) {
+            userRole = userDocSnapshot.data().role;
+          }
 
           const userData = {
             id: user.uid,
             email: user.email,
             displayName: user.displayName,
+            role: userRole,
           };
           dispatch(setUser(userData));
           dispatch(setAuthStatus(authStatuses.loggedIn));
@@ -38,6 +48,8 @@ export const Login = () => {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
+          console.warn(errorCode);
+          console.warn(errorMessage);
         });
     }
   }

@@ -1,15 +1,22 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {Button, Container} from '@mui/material';
+
 import {authStatuses} from '../../constants/authStatuses';
-import {setAuthStatus} from '../../store/actions';
-import {Link} from 'react-router-dom';
+import {deleteUser, setAuthStatus} from '../../store/actions';
+
 import {Search} from '../Search';
+
 import './Header.css';
 
 export const Header = () => {
   const loggedIn = useSelector((state) => state.auth.status === authStatuses.loggedIn);
   const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(setAuthStatus(authStatuses.loggedOut));
+    dispatch(deleteUser());
+  }
 
   return (
     <Container maxWidth="false" className="header__container">
@@ -24,17 +31,12 @@ export const Header = () => {
           <span className="nav__block__item">
            {loggedIn &&
              <Button
-               onClick={() => dispatch(setAuthStatus(authStatuses.loggedOut))}
+               onClick={handleLogout}
                className="navbar__login"
              >
                Sign Out
              </Button>
            }
-          </span>
-          <span className="nav__block__item">
-            <Link to={`/register`}>
-              <Button variant="outlined">Registration</Button>
-            </Link>
           </span>
         </div>
       </nav>
