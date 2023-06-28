@@ -14,7 +14,7 @@ export const AdminPage = () => {
         </Link>
       </div>
       <div className="admin__page__item">
-        <Link to="/admin/add-films" className="item__link">
+        <Link to="/admin/view-users" className="item__link">
           View all users
         </Link>
       </div>

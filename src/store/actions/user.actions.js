@@ -1,4 +1,4 @@
-import {USER} from "../../constants/actionTypes";
+import {USER, USERS} from "../../constants/actionTypes";
 
 export const setUser = (userData) => ({
   type: USER.set,
@@ -7,4 +7,9 @@ export const setUser = (userData) => ({
 
 export const deleteUser = () => ({
   type: USER.delete,
+});
+
+export const setUsersList = (payload) => ({
+  type: USERS.get,
+  payload
 });

@@ -8,6 +8,7 @@ export const INITIAL_STATE = {
     id: null,
     email: null,
     displayName: null,
-    role:null,
+    role: null,
   },
+  users: [],
 };

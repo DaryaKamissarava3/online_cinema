@@ -6,3 +6,7 @@ export const USER={
   set:'user/set',
   delete:'user/delete',
 };
+
+export const USERS={
+  get:'users/get-users-list',
+};

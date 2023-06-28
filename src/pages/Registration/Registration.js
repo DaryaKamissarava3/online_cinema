@@ -18,7 +18,12 @@ export const Registration = () => {
 
   const assignUserRole = (user, role) => {
     const userRef = doc(db, "users", user.uid);
-    return setDoc(userRef, { role: role }, { merge: true });
+    return setDoc(userRef, {
+      role: role,
+      firstName:firstName,
+      lastName:lastName,
+      email:email,
+    }, { merge: true });
   };
 
   const handleRegister = () => {
