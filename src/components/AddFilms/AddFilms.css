@@ -1,0 +1,25 @@
+.films__container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.add__films__container{
+  width: 600px;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #efe3ba;
+}
+
+.add__film__input{
+  margin-left: 10%;
+  margin-bottom: 15px;
+}
+
+.add__film__btn{
+  margin-left: 10%;
+}

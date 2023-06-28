@@ -1,17 +1,28 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+
+import './AdminPage.css';
 
 export const AdminPage = () => {
   return (
-    <div>
-      <h1>Admin Page</h1>
-      <div>
-        Add films
+    <div className="admin__page__container">
+      <h1 className="admin__page__title">Admin Page</h1>
+      <div className="admin__page__item__block">
+      <div className="admin__page__item">
+        <Link to="/admin/add-films" className="item__link">
+          Add films
+        </Link>
       </div>
-      <div>
-        View all users
+      <div className="admin__page__item">
+        <Link to="/admin/add-films" className="item__link">
+          View all users
+        </Link>
       </div>
-      <div>
-        Films list
+      <div className="admin__page__item">
+        <Link to="/admin/add-films" className="item__link">
+          Films list
+        </Link>
+      </div>
       </div>
     </div>
   );

@@ -1,0 +1,28 @@
+.admin__page__title {
+  display: flex;
+  justify-content: center;
+}
+
+.admin__page__item__block {
+  margin: 50px 40px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.admin__page__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 80px;
+  background-color: #f5b5a1;
+  color: #622c19;
+  border-radius: 15px;
+}
+
+.item__link {
+  font-size: 26px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
