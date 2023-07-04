@@ -1,14 +1,10 @@
 import React from 'react';
 import {Button, Input} from '@mui/material';
+
 import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 
-import {setAuthStatus, setUser} from '../../store/actions';
-import {authStatuses} from '../../constants/authStatuses';
-
-import {signInWithEmailAndPassword} from 'firebase/auth';
-import {auth, db} from '../../firebase.config';
-import {doc, getDoc} from 'firebase/firestore';
+import { loginUser} from '../../store/actions/authActions';
 
 import './Login.css';
 
@@ -23,36 +19,10 @@ export const Login = () => {
     const password = formData.get('password');
 
     if (email && password) {
-      signInWithEmailAndPassword(auth, email, password)
-        .then(async (userCredential) => {
-          const user = userCredential.user;
-          console.log(user);
-
-          const userDocRef = doc(db, 'users', user.uid);
-          const userDocSnapshot = await getDoc(userDocRef);
-          let userRole = null;
-          if (userDocSnapshot.exists()) {
-            userRole = userDocSnapshot.data().role;
-          }
-
-          const userData = {
-            id: user.uid,
-            email: user.email,
-            displayName: user.displayName,
-            role: userRole,
-          };
-          dispatch(setUser(userData));
-          dispatch(setAuthStatus(authStatuses.loggedIn));
-          navigate('/');
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.warn(errorCode);
-          console.warn(errorMessage);
-        });
+      dispatch(loginUser({email,password}));
+      navigate('/');
     }
-  }
+  };
 
   return (
     <div className="login__container">

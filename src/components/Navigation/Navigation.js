@@ -3,14 +3,12 @@ import {Button} from '@mui/material';
 import {Link} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 
-import {authStatuses} from '../../constants/authStatuses';
-
 import {Header} from '../Header';
 
 import './Navigation.css';
 
 export const Navigation = () => {
-  const isAuth = useSelector((state) => state.auth.status === authStatuses.loggedIn)
+  const isAuth = useSelector((state) => state.auth.isLoggedIn === true)
 
   return (
     <div className=" navigation__container">

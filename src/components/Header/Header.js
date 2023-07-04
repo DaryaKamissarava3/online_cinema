@@ -2,20 +2,18 @@ import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {Button, Container} from '@mui/material';
 
-import {authStatuses} from '../../constants/authStatuses';
-import {deleteUser, setAuthStatus} from '../../store/actions';
-
 import {Search} from '../Search';
+
+import {logoutUser} from "../../store/actions/authActions";
 
 import './Header.css';
 
 export const Header = () => {
-  const loggedIn = useSelector((state) => state.auth.status === authStatuses.loggedIn);
+  const loggedIn = useSelector((state) => state.auth.isLoggedIn === true);
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    dispatch(setAuthStatus(authStatuses.loggedOut));
-    dispatch(deleteUser());
+    dispatch(logoutUser());
   }
 
   return (

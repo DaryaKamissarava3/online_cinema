@@ -1,20 +1,24 @@
 import React, {useState} from 'react';
 import {Button, Input} from '@mui/material';
+import {useDispatch} from 'react-redux';
 
-import {db,storage} from '../../firebase.config';
-import {collection, addDoc} from 'firebase/firestore';
-import {  ref, uploadBytes,getDownloadURL } from 'firebase/storage';
+import {storage} from '../../firebase.config';
+import {ref, uploadBytes, getDownloadURL} from 'firebase/storage';
+
+import {addFilm} from '../../store/actions/filmsActions';
 
 import './AddFilms.css';
 
 export const AddFilms = () => {
-  const [filmTitle, setFilmTitle] = useState('');
-  const [filmDescription, setFilmDescription] = useState('');
-  const [filmPrice, setFilmPrice] = useState('');
+  const [title, setFilmTitle] = useState('');
+  const [description, setFilmDescription] = useState('');
+  const [price, setFilmPrice] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const [filmImage, setFilmImage] = useState('');
-  const [filmTags, setFilmTags] = useState('');
+  const [image, setFilmImage] = useState('');
+  const [tags, setFilmTags] = useState('');
+
+  const dispatch = useDispatch();
 
   const getCurrentDate = () => {
     return new Date().toISOString().split('T')[0];
@@ -44,27 +48,24 @@ export const AddFilms = () => {
 
   const handleSubmit = async () => {
     try {
-      // Upload the film image to Firebase Storage
-      const storageRef = ref(storage, `film_images/${filmImage.name}`);
-      await uploadBytes(storageRef, filmImage);
+      const storageRef = ref(storage, `film_images/${image.name}`);
+      await uploadBytes(storageRef, image);
 
-      // Get the download URL of the uploaded image
       const downloadURL = await getDownloadURL(storageRef);
+      console.log('image url', downloadURL);
 
-      // Create a new document in the "films" collection with the image link
-      const docRef = await addDoc(collection(db, 'films'), {
-        title: filmTitle,
-        description: filmDescription,
-        price: filmPrice,
-        startDate: startDate,
-        endDate: endDate,
-        image: downloadURL, // Save the image link in Firestore
-        tags: filmTags
-      });
+      const filmData = {
+        title,
+        description,
+        price,
+        downloadURL,
+        startDate,
+        endDate,
+        tags
+      }
 
-      console.log('Film added with ID: ', docRef.id);
+      dispatch(addFilm(filmData));
 
-      // Reset the form fields after successful submission
       setFilmTitle('');
       setFilmDescription('');
       setFilmPrice('');
@@ -77,7 +78,6 @@ export const AddFilms = () => {
     }
   };
 
-
   return (
     <div className="films__container">
       <h1>Add films</h1>
@@ -86,14 +86,14 @@ export const AddFilms = () => {
           type="text"
           placeholder="Enter film title"
           className="add__film__input"
-          value={filmTitle}
+          value={title}
           onChange={(e) => setFilmTitle(e.target.value)}
         />
         <Input
           type="text"
           placeholder="Enter film description"
           className="add__film__input"
-          value={filmDescription}
+          value={description}
           onChange={(e) => setFilmDescription(e.target.value)}
         />
         <Input
@@ -102,7 +102,7 @@ export const AddFilms = () => {
           max="1000"
           placeholder="Enter film price"
           className="add__film__input"
-          value={filmPrice}
+          value={price}
           onChange={(e) => setFilmPrice(e.target.value)}
         />
         <input
@@ -131,7 +131,7 @@ export const AddFilms = () => {
           type="text"
           placeholder="Enter tags"
           className="add__film__input"
-          value={filmTags}
+          value={tags}
           onChange={(e) => setFilmTags(e.target.value)}
         />
         <Button

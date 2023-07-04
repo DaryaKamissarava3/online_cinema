@@ -1,10 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {Button, Input} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
 
-import {updateProfile,createUserWithEmailAndPassword  } from 'firebase/auth';
-import {  doc,setDoc } from 'firebase/firestore';
-import {auth,db} from '../../firebase.config';
+import {useDispatch} from 'react-redux';
+import {registerUser} from '../../store/actions/authActions';
 
 import './Registration.css';
 
@@ -14,48 +13,19 @@ export const Registration = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const assignUserRole = (user, role) => {
-    const userRef = doc(db, "users", user.uid);
-    return setDoc(userRef, {
-      role: role,
-      firstName:firstName,
-      lastName:lastName,
-      email:email,
-    }, { merge: true });
-  };
-
   const handleRegister = () => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log("Registration successful:", user);
+    const userData = {
+      email,
+      password,
+      firstName,
+      lastName,
+    };
 
-        updateProfile(user, { displayName: `${firstName} ${lastName}` })
-          .then(() => {
-            console.log("User profile updated successfully");
-          })
-          .catch((error) => {
-            console.error("Error updating user profile:", error);
-          });
-
-        assignUserRole(user, "user")
-          .then(() => {
-            console.log("Default role assigned successfully");
-          })
-          .catch((error) => {
-            console.error("Error assigning default role:", error);
-          });
-
-        navigate('/');
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.error("Registration failed:", errorMessage);
-        console.error("Registration failed:", errorCode);
-      });
+    dispatch(registerUser(userData));
+    navigate('/login')
   };
 
   return (

@@ -1,36 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch} from 'react-redux';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 
-import {collection, getDocs,query,where} from 'firebase/firestore';
-import {db} from '../../firebase.config';
-
-import {setUsersList} from '../../store/actions';
-
+import {getUsersList} from '../../store/actions/userActions';
 
 export const ViewUsers = () => {
-  const [users, setUsers] = useState([]);
+  const users = useSelector(state => state.users.users);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchUsers();
-  }, []);
-
-  const fetchUsers = async () => {
-    try {
-      const usersRef = collection(db, "users");
-      const q = query(usersRef, where("role", "==", "user"));
-      const querySnapshot = await getDocs(q);
-      const userList = [];
-      querySnapshot.forEach((doc) => {
-        userList.push({id: doc.id, ...doc.data()});
-      });
-      console.log(userList);
-      setUsers(userList);
-      dispatch(setUsersList(userList))
-    } catch (error) {
-      console.error('Error fetching users:', error);
-    }
-  };
+    dispatch(getUsersList());
+  }, [dispatch]);
 
   return (
     <div>
