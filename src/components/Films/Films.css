@@ -1,0 +1,25 @@
+.film__block__title{
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 40px;
+  color: #4e2f86;
+}
+
+.film__block {
+  padding-top: 60px;
+  background-color: #eee8fa;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.film__block__items {
+  position: relative;
+  display: flex;
+}
+
+.film-link {
+  text-decoration: none;
+  color: black;
+}

@@ -1,0 +1,17 @@
+.plus {
+  position: absolute;
+  cursor: pointer;
+  left: 97%;
+  width: 5%;
+  margin-top: 13%;
+}
+
+.minus {
+  position: absolute;
+  cursor: pointer;
+  width: 5%;
+  right: 99%;
+  margin-top: 13%;
+  transform: rotateY(180deg);
+  z-index: 800;
+}

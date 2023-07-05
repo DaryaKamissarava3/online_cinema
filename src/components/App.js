@@ -10,6 +10,7 @@ import {MainPage} from '../pages/MainPage';
 import {AddFilms} from './AddFilms';
 import {ViewUsers} from './ViewUsers';
 import {Films} from './Films';
+import {FilmDetails} from './FilmDetails';
 
 function App() {
   const loggedOut = useSelector((state) => state.auth.isLoggedIn !== true);
@@ -34,6 +35,7 @@ function App() {
                 <Route path="/admin/add-films" element={<AddFilms/>}/>
                 <Route path="/admin/view-users" element={<ViewUsers/>}/>
                 <Route path="/admin/films" element={<Films/>}/>
+                <Route path="films/:id" element={<FilmDetails/>}/>
               </>
             ) : (
               <>

@@ -1,0 +1,36 @@
+.film__details {
+  margin: 50px 100px;
+}
+
+.film__inner {
+  display: flex;
+  flex-direction: row;
+}
+
+.film-img {
+  width: 400px;
+}
+
+.film__description__block {
+  margin-left: 40px;
+}
+
+.film__title{
+  margin: 20px 0 15px 60px;
+  font-size: 34px;
+}
+
+.film__description{
+  font-size: 24px;
+  padding: 20px;
+  border: 1px solid black;
+}
+
+.film__price,
+.film__start__date,
+.film__end__date,
+.film__tags{
+  margin: 20px;
+  font-size: 24px;
+}
+
