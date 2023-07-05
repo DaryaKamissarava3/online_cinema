@@ -14,7 +14,7 @@ import {FilmDetails} from './FilmDetails';
 
 function App() {
   const loggedOut = useSelector((state) => state.auth.isLoggedIn !== true);
-  const userRole = useSelector((state) => state.user.role);
+  const userRole = useSelector((state) => state.user.user.role);
 
   return (
     <BrowserRouter>

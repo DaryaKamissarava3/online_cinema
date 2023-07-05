@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {getUsersList} from '../../store/actions/userActions';
 
 export const ViewUsers = () => {
-  const users = useSelector(state => state.users.users);
+  const users = useSelector(state => state.user.users);
   const dispatch = useDispatch();
 
   useEffect(() => {

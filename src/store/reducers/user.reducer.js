@@ -1,12 +1,15 @@
 import {
-  DELETE_USER,
+  DELETE_USER, GET_USERS_LIST, GET_USERS_LIST_FAILURE, GET_USERS_LIST_SUCCESS,
   SET_USER,
 } from '../actions/actionTypes';
 
 const initialState = {
-  name: null,
-  email: null,
-  role: null,
+  user: {
+    name: null,
+    email: null,
+    role: null,
+  },
+  users: [],
 }
 
 export const userReducer = (state = initialState, action) => {
@@ -14,16 +17,38 @@ export const userReducer = (state = initialState, action) => {
     case SET_USER:
       return {
         ...state,
-        name: action.payload.displayName,
-        email: action.payload.email,
-        role: action.payload.role,
+        user:{
+          name: action.payload.displayName,
+          email: action.payload.email,
+          role: action.payload.role,
+        }
       };
     case DELETE_USER:
       return {
         ...state,
-        name: null,
-        email: null,
-        role: null,
+        user: {
+          name: null,
+          email: null,
+          role: null,
+        }
+      };
+    case GET_USERS_LIST:
+      return {
+        ...state,
+        users: [],
+        error: null,
+      };
+    case GET_USERS_LIST_SUCCESS:
+      return {
+        ...state,
+        users: action.payload,
+        error: null,
+      };
+    case GET_USERS_LIST_FAILURE:
+      return {
+        ...state,
+        users: [],
+        error: action.payload,
       };
     default:
       return state
