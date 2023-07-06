@@ -40,6 +40,7 @@ function App() {
             ) : (
               <>
                 <Route path="/" element={<MainPage/>}/>
+                <Route path="films/:id" element={<FilmDetails/>}/>
                 <Route path="*" element={<Navigate to="/" replace={true}/>}/>
               </>
             )}

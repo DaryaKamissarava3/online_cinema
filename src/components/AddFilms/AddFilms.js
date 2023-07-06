@@ -3,9 +3,10 @@ import {Button, Input} from '@mui/material';
 import {useDispatch} from 'react-redux';
 
 import {storage} from '../../firebase.config';
-import {ref, uploadBytes, getDownloadURL} from 'firebase/storage';
+import {getDownloadURL, ref, uploadBytes} from 'firebase/storage';
 
 import {addFilm} from '../../store/actions/filmsActions';
+import {v4 as uuidv4} from 'uuid';
 
 import './AddFilms.css';
 
@@ -46,13 +47,17 @@ export const AddFilms = () => {
     setEndDate(selectedEndDate);
   };
 
+  const generateRandomId=()=>{
+    return uuidv4();
+  }
+
   const handleSubmit = async () => {
     try {
-      const storageRef = ref(storage, `film_images/${image.name}`);
+      const randomId = generateRandomId();
+      const storageRef = ref(storage, `film_images/${randomId}`);
       await uploadBytes(storageRef, image);
 
       const downloadURL = await getDownloadURL(storageRef);
-      console.log('image url', downloadURL);
 
       const filmData = {
         title,
