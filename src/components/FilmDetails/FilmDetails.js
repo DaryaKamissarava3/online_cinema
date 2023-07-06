@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button} from '@mui/material';
 import {useNavigate, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {deleteFilm} from '../../store/actions/filmsActions';
+import {bookedTicket} from '../../store/actions/ticketActions';
+
 import './FilmDetails.css';
 
 export const FilmDetails = () => {
@@ -15,6 +17,9 @@ export const FilmDetails = () => {
 
   const films = useSelector((state) => state.film.films);
   const userRole = useSelector((state) => state.user.user.role);
+  const userId = useSelector((state) => state.user.user.id);
+
+  const [selectedDate, setSelectedDate] = useState('');
 
   const filmInformation = films.find((el) => {
     if (el.id === params.id) {
@@ -22,10 +27,45 @@ export const FilmDetails = () => {
     }
   });
 
+  const handleDateSelection = (date) => {
+    setSelectedDate(date);
+  };
+
+  const generateDateButtons = () => {
+    const buttons = [];
+    const startDate = new Date(filmInformation.startDate);
+    const endDate = new Date(filmInformation.endDate);
+
+    for (let date = startDate; date <= endDate; date.setDate(date.getDate() + 1)) {
+      const formattedDate = date.toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'});
+      buttons.push(
+        <button
+          key={formattedDate}
+          className={`date-button ${selectedDate === formattedDate ? 'selected' : ''}`}
+          onClick={() => handleDateSelection(formattedDate)}
+        >
+          {formattedDate}
+        </button>
+      );
+    }
+
+    return buttons;
+  };
+
   const handleDeleteFilm = () => {
     dispatch(deleteFilm(params.id));
     navigate('/');
   };
+
+  const handleBookingTicket = () => {
+    const filmId = params.id;
+    const ticketData = {
+      userId: userId,
+      filmId: filmId,
+      selectedDate: selectedDate,
+    };
+    dispatch(bookedTicket(ticketData));
+  }
 
   return (
     <>
@@ -42,11 +82,19 @@ export const FilmDetails = () => {
             <div className="film__price">Cost: {filmInformation.price} $</div>
             <div className="film__start__date">Film start date: {filmInformation.startDate}</div>
             <div className="film__end__date">Film end date:{filmInformation.endDate}</div>
+            <div className="date-buttons-container">{generateDateButtons()}</div>
             <div className="film__tags">Tags: {filmInformation.tags}</div>
             <div>
               {userRole === 'admin' && (
                 <div>
                   <Button onClick={handleDeleteFilm}>DELETE FILM</Button>
+                </div>
+              )}
+            </div>
+            <div>
+              {userRole === 'user' && (
+                <div>
+                  <Button onClick={handleBookingTicket}>BOOK TICKET</Button>
                 </div>
               )}
             </div>

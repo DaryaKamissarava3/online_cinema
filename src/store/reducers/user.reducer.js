@@ -5,6 +5,7 @@ import {
 
 const initialState = {
   user: {
+    id:null,
     name: null,
     email: null,
     role: null,
@@ -18,6 +19,7 @@ export const userReducer = (state = initialState, action) => {
       return {
         ...state,
         user:{
+          id:action.payload.id,
           name: action.payload.displayName,
           email: action.payload.email,
           role: action.payload.role,
