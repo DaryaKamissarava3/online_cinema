@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button} from '@mui/material';
+import {Button, Select, MenuItem} from '@mui/material';
 import {useNavigate, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -20,6 +20,7 @@ export const FilmDetails = () => {
   const userId = useSelector((state) => state.user.user.id);
 
   const [selectedDate, setSelectedDate] = useState('');
+  const [ticketQuantity, setTicketQuantity] = useState(1);
 
   const filmInformation = films.find((el) => {
     if (el.id === params.id) {
@@ -59,12 +60,15 @@ export const FilmDetails = () => {
 
   const handleBookingTicket = () => {
     const filmId = params.id;
+    console.log(ticketQuantity)
     const ticketData = {
       userId: userId,
       filmId: filmId,
       selectedDate: selectedDate,
+      ticketQuantity: ticketQuantity,
     };
     dispatch(bookedTicket(ticketData));
+    navigate('/');
   }
 
   return (
@@ -82,7 +86,6 @@ export const FilmDetails = () => {
             <div className="film__price">Cost: {filmInformation.price} $</div>
             <div className="film__start__date">Film start date: {filmInformation.startDate}</div>
             <div className="film__end__date">Film end date:{filmInformation.endDate}</div>
-            <div className="date-buttons-container">{generateDateButtons()}</div>
             <div className="film__tags">Tags: {filmInformation.tags}</div>
             <div>
               {userRole === 'admin' && (
@@ -93,9 +96,22 @@ export const FilmDetails = () => {
             </div>
             <div>
               {userRole === 'user' && (
-                <div>
-                  <Button onClick={handleBookingTicket}>BOOK TICKET</Button>
-                </div>
+                <>
+                  <div className="date-buttons-container">{generateDateButtons()}</div>
+                  <Select
+                    value={ticketQuantity.toString()}
+                    onChange={(event) => setTicketQuantity(event.target.value)}
+                  >
+                    <MenuItem value={1}>1 Ticket</MenuItem>
+                    <MenuItem value={2}>2 Tickets</MenuItem>
+                    <MenuItem value={3}>3 Tickets</MenuItem>
+                    <MenuItem value={4}>4 Tickets</MenuItem>
+                    <MenuItem value={5}>5 Tickets</MenuItem>
+                  </Select>
+                  <div>
+                    <Button onClick={handleBookingTicket}>BOOK TICKET</Button>
+                  </div>
+                </>
               )}
             </div>
           </div>

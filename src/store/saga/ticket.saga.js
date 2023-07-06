@@ -7,13 +7,14 @@ import {BOOK_TICKET} from '../actions/actionTypes';
 
 
 function* bookTicketSaga(action) {
-  const { userId, filmId, selectedDate } = action.payload;
+  const { userId, filmId, selectedDate,ticketQuantity } = action.payload;
   console.log('from,saga',userId,filmId,selectedDate);
   try {
     const docRef = yield addDoc(collection(db, 'tickets'), {
       userID: userId,
       filmID: filmId,
       filmDate: selectedDate,
+      ticketQuantity: ticketQuantity,
     });
 
     yield put(bookedTicketSuccess());
