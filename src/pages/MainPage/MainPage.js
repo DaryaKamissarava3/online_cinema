@@ -1,10 +1,12 @@
 import React from 'react';
 import {Footer} from '../../components/Footer';
 import {Films} from '../../components/Films';
+import {UserMenu} from "../UserMenu";
 
 export const MainPage = () => {
   return (
     <>
+      <UserMenu />
       <Films />
       <Footer/>
     </>

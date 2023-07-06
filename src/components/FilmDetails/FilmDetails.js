@@ -60,16 +60,17 @@ export const FilmDetails = () => {
 
   const handleBookingTicket = () => {
     const filmId = params.id;
-    console.log(ticketQuantity)
+
     const ticketData = {
       userId: userId,
       filmId: filmId,
       selectedDate: selectedDate,
       ticketQuantity: ticketQuantity,
     };
+
     dispatch(bookedTicket(ticketData));
     navigate('/');
-  }
+  };
 
   return (
     <>
