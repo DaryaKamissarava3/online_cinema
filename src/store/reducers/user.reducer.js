@@ -1,14 +1,21 @@
 import {
-  DELETE_USER, GET_USERS_LIST, GET_USERS_LIST_FAILURE, GET_USERS_LIST_SUCCESS,
+  DELETE_USER,
+  GET_USERS_LIST,
+  GET_USERS_LIST_FAILURE,
+  GET_USERS_LIST_SUCCESS,
+  REQUEST_DELETE_ACCOUNT,
+  REQUEST_DELETE_ACCOUNT_FAILURE,
+  REQUEST_DELETE_ACCOUNT_SUCCESS,
   SET_USER,
 } from '../actions/actionTypes';
 
 const initialState = {
   user: {
-    id:null,
+    id: null,
     name: null,
     email: null,
     role: null,
+    requestDeleteAccount: false,
   },
   users: [],
 }
@@ -18,8 +25,8 @@ export const userReducer = (state = initialState, action) => {
     case SET_USER:
       return {
         ...state,
-        user:{
-          id:action.payload.id,
+        user: {
+          id: action.payload.id,
           name: action.payload.displayName,
           email: action.payload.email,
           role: action.payload.role,
@@ -50,6 +57,33 @@ export const userReducer = (state = initialState, action) => {
       return {
         ...state,
         users: [],
+        error: action.payload,
+      };
+    case REQUEST_DELETE_ACCOUNT:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          requestDeleteAccount: false,
+        },
+        error: null,
+      };
+    case REQUEST_DELETE_ACCOUNT_SUCCESS:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          requestDeleteAccount: true,
+        },
+        error: null,
+      };
+    case REQUEST_DELETE_ACCOUNT_FAILURE:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          requestDeleteAccount: false,
+        },
         error: action.payload,
       };
     default:
