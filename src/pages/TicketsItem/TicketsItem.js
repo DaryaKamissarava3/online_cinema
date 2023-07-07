@@ -1,10 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import {useSelector} from 'react-redux';
+import {Button} from '@mui/material';
+
+import {useDispatch, useSelector} from 'react-redux';
+
+import {deleteTickets} from '../../store/actions/ticketActions';
 
 import './TicketsItem.css';
 
-export const TicketsItem = ({filmId, filmDate, ticketQuantity}) => {
+export const TicketsItem = ({ticketId, filmId, filmDate, ticketQuantity}) => {
   const [totalCost, setTotalCost] = useState(0);
+
+  const dispatch = useDispatch();
 
   const films = useSelector((state) => state.film.films);
   const film = films.find((film) => film.id === filmId);
@@ -18,6 +24,10 @@ export const TicketsItem = ({filmId, filmDate, ticketQuantity}) => {
     setTotalCost(cost);
   };
 
+  const handleDeleteTicket = () => {
+    dispatch(deleteTickets(ticketId));
+  }
+
   return (
     <div className="ticket__item__block">
       <div>
@@ -29,6 +39,7 @@ export const TicketsItem = ({filmId, filmDate, ticketQuantity}) => {
         <div className="ticket__inf">{filmDate}</div>
         <div className="ticket__inf">Tickets : {ticketQuantity}</div>
         <div className="ticket__inf">Total tickets cost : {totalCost}</div>
+        <Button onClick={handleDeleteTicket}>CANCEL THE BOOKING</Button>
       </div>
     </div>
   );

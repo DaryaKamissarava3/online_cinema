@@ -13,7 +13,6 @@ export const UserTickets = () => {
 
   const dispatch = useDispatch();
 
-
   useEffect(() => {
     dispatch(getTickets(userId));
   }, [dispatch, userId]);
@@ -24,12 +23,12 @@ export const UserTickets = () => {
       {tickets.map((item) =>
         (
             <TicketsItem
+              ticketId={item.id}
               filmId={item.filmID}
               filmDate={item.filmDate}
               ticketQuantity={item.ticketQuantity}
               key={item.id}
             />
-
         ))}
     </div>
   );

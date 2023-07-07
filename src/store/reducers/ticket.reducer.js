@@ -1,16 +1,17 @@
 import {
   BOOK_TICKET,
   BOOK_TICKET_FAILURE,
-  BOOK_TICKET_SUCCESS,
+  BOOK_TICKET_SUCCESS, DELETE_TICKETS, DELETE_TICKETS_FAILURE, DELETE_TICKETS_SUCCESS,
   GET_TICKETS,
   GET_TICKETS_FAILURE,
   GET_TICKETS_SUCCESS
 } from '../actions/actionTypes';
 
 const initialState = {
-  tickets:[],
-  ticket:{
+  tickets: [],
+  ticket: {
     loading: false,
+    delete: false,
   },
   error: null,
 }
@@ -20,7 +21,7 @@ export const ticketReducer = (state = initialState, action) => {
     case BOOK_TICKET:
       return {
         ...state,
-        ticket:{
+        ticket: {
           loading: false,
         },
         error: null,
@@ -28,7 +29,7 @@ export const ticketReducer = (state = initialState, action) => {
     case BOOK_TICKET_SUCCESS:
       return {
         ...state,
-        ticket:{
+        ticket: {
           loading: true,
         },
         error: null,
@@ -36,7 +37,7 @@ export const ticketReducer = (state = initialState, action) => {
     case BOOK_TICKET_FAILURE:
       return {
         ...state,
-        ticket:{
+        ticket: {
           loading: false,
         },
         error: action.payload,
@@ -57,6 +58,33 @@ export const ticketReducer = (state = initialState, action) => {
       return {
         ...state,
         tickets: [],
+        error: action.payload,
+      };
+    case DELETE_TICKETS:
+      return {
+        ...state,
+        ticket: {
+          ...state.ticket,
+          delete: false,
+        },
+        error: null,
+      };
+    case DELETE_TICKETS_SUCCESS:
+      return {
+        ...state,
+        ticket: {
+          ...state.ticket,
+          delete: true,
+        },
+        error: null,
+      };
+    case DELETE_TICKETS_FAILURE:
+      return {
+        ...state,
+        ticket: {
+          ...state.ticket,
+          delete: false,
+        },
         error: action.payload,
       };
     default:
