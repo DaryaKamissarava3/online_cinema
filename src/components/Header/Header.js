@@ -1,6 +1,8 @@
 import React from 'react';
-import {useSelector, useDispatch} from 'react-redux';
 import {Button, Container} from '@mui/material';
+
+import {useSelector, useDispatch} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 import {Search} from '../Search';
 
@@ -20,7 +22,9 @@ export const Header = () => {
     <Container maxWidth="false" className="header__container">
       <nav className="header__navigation">
         <div className="nav__block">
-          <h1 className="header__logo">LOGO</h1>
+          <Link className="main__logo__link" to={`/`}>
+            <h1>LOGO</h1>
+          </Link>
         </div>
         <div className="nav__block">
           <span className="nav__block__item">

@@ -1,9 +1,36 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+
+import {getTickets} from '../../store/actions/ticketActions';
+
+import {TicketsItem} from "../TicketsItem";
+
+import './UserTickets.css';
 
 export const UserTickets = () => {
+  const userId = useSelector((state) => state.user.user.id);
+  const tickets = useSelector((state) => state.ticket.tickets);
+
+  const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    dispatch(getTickets(userId));
+  }, [dispatch, userId]);
+
   return (
-    <div>
-      User Tickets
+    <div className="user__tickets__container">
+      <h2 className="user__tickets__title">My Tickets</h2>
+      {tickets.map((item) =>
+        (
+            <TicketsItem
+              filmId={item.filmID}
+              filmDate={item.filmDate}
+              ticketQuantity={item.ticketQuantity}
+              key={item.id}
+            />
+
+        ))}
     </div>
   );
 };
