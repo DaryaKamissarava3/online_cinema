@@ -20,6 +20,7 @@ export const ViewUsers = () => {
       {users.map((item) =>
         (
           <UserItem
+            userId={item.id}
             firstName={item.firstName}
             lastName={item.lastName}
             email={item.email}

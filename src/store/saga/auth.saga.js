@@ -5,7 +5,7 @@ import {auth, db} from '../../firebase.config';
 import {doc, getDoc, setDoc} from 'firebase/firestore';
 
 import {loginUserFailure, loginUserSuccess, logoutUserSuccess, registerUserFailure, registerUserSuccess} from '../actions/authActions';
-import {deleteUser, setUser} from '../actions/userActions';
+import {clearUser, setUser} from '../actions/userActions';
 
 function* registerUserSaga(action) {
   const userData = action.payload;
@@ -76,7 +76,7 @@ function* loginUserSaga(action) {
 
 function* logoutUserSaga() {
   yield put(logoutUserSuccess())
-  yield put(deleteUser())
+  yield put(clearUser())
 }
 
 export function* authSaga() {

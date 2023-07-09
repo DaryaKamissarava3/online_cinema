@@ -1,5 +1,8 @@
 import {
+  CLEAR_USER,
   DELETE_USER,
+  DELETE_USER_FAILURE,
+  DELETE_USER_SUCCESS,
   GET_USERS_LIST,
   GET_USERS_LIST_FAILURE,
   GET_USERS_LIST_SUCCESS,
@@ -16,6 +19,7 @@ const initialState = {
     email: null,
     role: null,
     requestDeleteAccount: false,
+    deleteUser:false,
   },
   users: [],
 }
@@ -32,7 +36,7 @@ export const userReducer = (state = initialState, action) => {
           role: action.payload.role,
         }
       };
-    case DELETE_USER:
+    case CLEAR_USER:
       return {
         ...state,
         user: {
@@ -40,6 +44,33 @@ export const userReducer = (state = initialState, action) => {
           email: null,
           role: null,
         }
+      };
+    case DELETE_USER:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          deleteUser: false,
+        },
+        error: null,
+      };
+    case DELETE_USER_SUCCESS:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          deleteUser: true,
+        },
+        error: null,
+      };
+    case DELETE_USER_FAILURE:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          deleteUser: false,
+        },
+        error: action.payload,
       };
     case GET_USERS_LIST:
       return {

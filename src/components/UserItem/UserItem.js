@@ -2,11 +2,14 @@ import React from 'react';
 import {Button} from '@mui/material';
 
 import './UserItem.css';
+import {useDispatch} from "react-redux";
+import {deleteUser} from "../../store/actions/userActions";
 
-export const UserItem = ({firstName, lastName, email, requestDeleteAccount}) => {
+export const UserItem = ({userId, firstName, lastName, email, requestDeleteAccount}) => {
+  const dispatch = useDispatch();
 
   const handleDeleteUser = () => {
-
+    dispatch(deleteUser(userId));
   };
 
   return (

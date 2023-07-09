@@ -1,12 +1,12 @@
 import {
   SET_USER,
-  DELETE_USER,
+  CLEAR_USER,
   GET_USERS_LIST,
   GET_USERS_LIST_FAILURE,
   GET_USERS_LIST_SUCCESS,
   REQUEST_DELETE_ACCOUNT,
   REQUEST_DELETE_ACCOUNT_SUCCESS,
-  REQUEST_DELETE_ACCOUNT_FAILURE,
+  REQUEST_DELETE_ACCOUNT_FAILURE, DELETE_USER_FAILURE, DELETE_USER_SUCCESS, DELETE_USER,
 } from './actionTypes';
 
 export const setUser = (userData) => ({
@@ -14,8 +14,8 @@ export const setUser = (userData) => ({
   payload: userData,
 });
 
-export const deleteUser = () => ({
-  type: DELETE_USER,
+export const clearUser = () => ({
+  type: CLEAR_USER,
 });
 
 export const getUsersList = () => ({
@@ -43,6 +43,20 @@ export const requestDeleteAccountSuccess = () => ({
 
 export const requestDeleteAccountFailure = (error) => ({
   type: REQUEST_DELETE_ACCOUNT_FAILURE,
+  payload: error,
+});
+
+export const deleteUser = (payload) => ({
+  type: DELETE_USER ,
+  payload,
+});
+
+export const deleteUserSuccess = () => ({
+  type: DELETE_USER_SUCCESS,
+});
+
+export const deleteUserFailure = (error) => ({
+  type: DELETE_USER_FAILURE,
   payload: error,
 });
 
