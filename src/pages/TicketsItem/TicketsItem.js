@@ -7,7 +7,7 @@ import {deleteTickets} from '../../store/actions/ticketActions';
 
 import './TicketsItem.css';
 
-export const TicketsItem = ({ticketId, filmId, filmDate, ticketQuantity}) => {
+export const TicketsItem = ({userId, ticketId, filmId, filmDate, ticketQuantity}) => {
   const [totalCost, setTotalCost] = useState(0);
 
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ export const TicketsItem = ({ticketId, filmId, filmDate, ticketQuantity}) => {
   };
 
   const handleDeleteTicket = () => {
-    dispatch(deleteTickets(ticketId));
+    dispatch(deleteTickets(ticketId,userId));
   }
 
   return (

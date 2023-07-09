@@ -23,6 +23,7 @@ export const UserTickets = () => {
       {tickets.map((item) =>
         (
             <TicketsItem
+              userId={userId}
               ticketId={item.id}
               filmId={item.filmID}
               filmDate={item.filmDate}

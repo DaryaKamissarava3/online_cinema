@@ -52,13 +52,21 @@ function* getTicketsSaga(action) {
 function* deleteTicketsSaga(action) {
   try {
     const ticketId = action.payload;
+    const userId = action.payload;
 
     yield deleteDoc(doc(db, 'tickets', ticketId));
 
-    const querySnapshot = yield getDocs(collection(db, 'tickets'));
-    const tickets = querySnapshot.docs.map((doc) => doc.data());
+    const tickets = collection(db, "tickets");
+    const q = query(tickets, where("userID", "==", userId));
 
-    yield put(getTicketsSuccess(tickets));
+    const querySnapshot = yield getDocs(q);
+
+    const ticketsList = [];
+    querySnapshot.forEach((doc) => {
+      ticketsList.push({id: doc.id, ...doc.data()});
+    });
+
+    yield put(getTicketsSuccess(ticketsList));
     yield put(deleteTicketsSuccess());
     window.alert('Tickets deleted!!!!');
   } catch (error) {
