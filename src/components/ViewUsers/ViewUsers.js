@@ -2,6 +2,9 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {getUsersList} from '../../store/actions/userActions';
+import {UserItem} from '../UserItem';
+
+import './ViewUsers.css';
 
 export const ViewUsers = () => {
   const users = useSelector(state => state.user.users);
@@ -12,19 +15,18 @@ export const ViewUsers = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      <h1>List of users</h1>
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>
-            ID: {user.id}<br/>
-            First Name: {user.firstName}<br/>
-            Last Name: {user.lastName}<br/>
-            Email: {user.email}<br/>
-            Role: {user.role}
-          </li>
+    <div className="users__container">
+      <h1 className="users__container__title">List of users</h1>
+      {users.map((item) =>
+        (
+          <UserItem
+            firstName={item.firstName}
+            lastName={item.lastName}
+            email={item.email}
+            requestDeleteAccount={item.requestDeleteAccount}
+            key={item.id}
+          />
         ))}
-      </ul>
     </div>
   );
 };

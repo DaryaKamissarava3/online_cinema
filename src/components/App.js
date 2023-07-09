@@ -11,9 +11,11 @@ import {AddFilms} from './AddFilms';
 import {ViewUsers} from './ViewUsers';
 import {Films} from './Films';
 import {FilmDetails} from './FilmDetails';
-import {UserTickets} from '../pages/UserTickets';
-import {UserAccount} from '../pages/UserAccount';
+
+
 import {About} from '../pages/About';
+import {UserTickets} from "./UserTickets";
+import {UserAccount} from "./UserAccount";
 
 function App() {
   const loggedOut = useSelector((state) => state.auth.isLoggedIn !== true);

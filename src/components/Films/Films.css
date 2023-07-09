@@ -1,3 +1,7 @@
+.film__container{
+  margin-top: 100px;
+}
+
 .film__block__title{
   display: flex;
   justify-content: center;

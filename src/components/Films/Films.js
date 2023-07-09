@@ -32,7 +32,7 @@ export const Films = () => {
   };
 
   return (
-    <div>
+    <div className="film__container">
       <h1 className="film__block__title">Films</h1>
       <div className="film__block">
         <div className="film__block__items">
