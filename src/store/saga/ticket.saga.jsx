@@ -1,4 +1,12 @@
-import { addDoc, collection, deleteDoc, doc, getDocs, query, where } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  query,
+  where,
+} from 'firebase/firestore';
 import { put, takeEvery } from 'redux-saga/effects';
 import { db } from '../../firebase.config';
 
@@ -7,12 +15,17 @@ import {
   bookedTicketSuccess,
   deleteTicketsFailure, deleteTicketsSuccess,
   getTicketsFailure,
-  getTicketsSuccess
+  getTicketsSuccess,
 } from '../actions/ticketActions';
 import { BOOK_TICKET, DELETE_TICKETS, GET_TICKETS } from '../actions/actionTypes';
 
 function* bookTicketSaga(action) {
-  const { userId, filmId, selectedDate, ticketQuantity } = action.payload;
+  const {
+    userId,
+    filmId,
+    selectedDate,
+    ticketQuantity,
+  } = action.payload;
 
   try {
     yield addDoc(collection(db, 'tickets'), {
@@ -39,8 +52,8 @@ function* getTicketsSaga(action) {
     const querySnapshot = yield getDocs(q);
 
     const ticketsList = [];
-    querySnapshot.forEach((doc) => {
-      ticketsList.push(Object.assign({ id: doc.id }, doc.data()));
+    querySnapshot.forEach((document) => {
+      ticketsList.push(Object.assign({ id: document.id }, document.data()));
     });
 
     yield put(getTicketsSuccess(ticketsList));
@@ -56,14 +69,14 @@ function* deleteTicketsSaga(action) {
 
     yield deleteDoc(doc(db, 'tickets', ticketId));
 
-    const tickets = collection(db, "tickets");
-    const q = query(tickets, where("userID", "==", userId));
+    const tickets = collection(db, 'tickets');
+    const q = query(tickets, where('userID', '==', userId));
 
     const querySnapshot = yield getDocs(q);
 
     const ticketsList = [];
-    querySnapshot.forEach((doc) => {
-      ticketsList.push({id: doc.id, ...doc.data()});
+    querySnapshot.forEach((document) => {
+      ticketsList.push({ id: document.id, ...document.data() });
     });
 
     yield put(getTicketsSuccess(ticketsList));

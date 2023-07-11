@@ -7,14 +7,14 @@ import {
   LOGOUT_USER_SUCCESS,
   REGISTER_USER,
   REGISTER_USER_FAILURE,
-  REGISTER_USER_SUCCESS
+  REGISTER_USER_SUCCESS,
 } from '../actions/actionTypes';
 
 const initialState = {
-  isLoggedIn:false,
+  isLoggedIn: false,
   isRegistering: false,
   error: null,
-}
+};
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -75,6 +75,6 @@ export const authReducer = (state = initialState, action) => {
         error: action.payload,
       };
     default:
-      return state
+      return state;
   }
-}
+};

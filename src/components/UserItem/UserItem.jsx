@@ -6,13 +6,12 @@ import { deleteUser } from '../../store/actions/userActions';
 
 import './UserItem.css';
 
-export const UserItem = (
-  {
-    userId,
-    firstName,
-    lastName,
-    email,
-    requestDeleteAccount
+export const UserItem = ({
+  userId,
+  firstName,
+  lastName,
+  email,
+  requestDeleteAccount,
   }) => {
   const dispatch = useDispatch();
 
@@ -23,13 +22,16 @@ export const UserItem = (
   return (
     <div className="user__item__block">
       <div className="user__firstName">
-        First name : {firstName}
+        First name :
+        {firstName}
       </div>
       <div className="user__lastName">
-        Last name : {lastName}
+        Last name :
+        {lastName}
       </div>
       <div className="user__email">
-        Email : {email}
+        Email :
+        {email}
       </div>
       {requestDeleteAccount && (
         <>

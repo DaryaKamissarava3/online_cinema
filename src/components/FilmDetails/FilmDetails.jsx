@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Select, MenuItem } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -77,7 +77,7 @@ export const FilmDetails = () => {
       <div className="film__inner">
         <div className="film__image first-block">
           <div>
-            <img src={filmInformation.image} className="film-img" alt="img"/>
+            <img src={filmInformation.image} className="film-img" alt="img" />
           </div>
         </div>
         <div className="film__description__block">
@@ -88,16 +88,20 @@ export const FilmDetails = () => {
             {filmInformation.description}
           </div>
           <div className="film__price">
-            Cost: {filmInformation.price} $
+            Cost:
+            {filmInformation.price} $
           </div>
           <div className="film__start__date">
-            Film start date: {filmInformation.startDate}
+            Film start date:
+            {filmInformation.startDate}
           </div>
           <div className="film__end__date">
-            Film end date:{filmInformation.endDate}
+            Film end date:
+            {filmInformation.endDate}
           </div>
           <div className="film__tags">
-            Tags: {filmInformation.tags}
+            Tags:
+            {filmInformation.tags}
           </div>
           <div>
             {userRole === 'admin' && (

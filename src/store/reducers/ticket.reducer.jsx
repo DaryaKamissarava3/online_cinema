@@ -4,7 +4,7 @@ import {
   BOOK_TICKET_SUCCESS, DELETE_TICKETS, DELETE_TICKETS_FAILURE, DELETE_TICKETS_SUCCESS,
   GET_TICKETS,
   GET_TICKETS_FAILURE,
-  GET_TICKETS_SUCCESS
+  GET_TICKETS_SUCCESS,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -14,7 +14,7 @@ const initialState = {
     delete: false,
   },
   error: null,
-}
+};
 
 export const ticketReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -88,6 +88,6 @@ export const ticketReducer = (state = initialState, action) => {
         error: action.payload,
       };
     default:
-      return state
+      return state;
   }
-}
+};

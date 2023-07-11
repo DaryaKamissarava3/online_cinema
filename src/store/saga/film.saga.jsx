@@ -1,8 +1,15 @@
 import { put, takeEvery } from 'redux-saga/effects';
 
-import { addDoc, collection, getDocs, deleteDoc, doc, getDoc } from 'firebase/firestore';
-import { db, storage } from '../../firebase.config';
+import {
+  addDoc,
+  collection,
+  getDocs,
+  deleteDoc,
+  doc,
+  getDoc,
+} from 'firebase/firestore';
 import { deleteObject, ref } from 'firebase/storage';
+import { db, storage } from '../../firebase.config';
 
 import {
   addFilmFailure,
@@ -10,7 +17,7 @@ import {
   deleteFilmFailure,
   deleteFilmSuccess,
   getFilmListFailure,
-  getFilmListSuccess
+  getFilmListSuccess,
 } from '../actions/filmsActions';
 import { ADD_FILM, DELETE_FILM, GET_FILM_LIST } from '../actions/actionTypes';
 
@@ -50,7 +57,7 @@ function* deleteFilmSaga(action) {
     yield deleteDoc(doc(db, 'films', filmId));
 
     const querySnapshot = yield getDocs(collection(db, 'films'));
-    const films = querySnapshot.docs.map((doc) => doc.data());
+    const films = querySnapshot.docs.map((document) => document.data());
 
     yield put(getFilmListSuccess(films));
     yield put(deleteFilmSuccess());
@@ -65,18 +72,18 @@ function* getFilmListSaga() {
     const querySnapshot = yield getDocs(collection(db, 'films'));
     const films = [];
 
-    querySnapshot.forEach((doc) => {
-      films.push({id: doc.id, ...doc.data()});
+    querySnapshot.forEach((document) => {
+      films.push({ id: document.id, ...document.data() });
     });
 
-    yield put(getFilmListSuccess(films))
+    yield put(getFilmListSuccess(films));
   } catch (error) {
-    yield put(getFilmListFailure(error.message))
+    yield put(getFilmListFailure(error.message));
   }
 }
 
 export function* filmSaga() {
-  yield takeEvery(ADD_FILM, addFilmSaga)
-  yield takeEvery(DELETE_FILM, deleteFilmSaga)
-  yield takeEvery(GET_FILM_LIST, getFilmListSaga)
+  yield takeEvery(ADD_FILM, addFilmSaga);
+  yield takeEvery(DELETE_FILM, deleteFilmSaga);
+  yield takeEvery(GET_FILM_LIST, getFilmListSaga);
 }

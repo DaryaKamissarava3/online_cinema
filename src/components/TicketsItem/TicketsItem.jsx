@@ -7,13 +7,12 @@ import { deleteTickets } from '../../store/actions/ticketActions';
 
 import './TicketsItem.css';
 
-export const TicketsItem = (
-  {
-    userId,
-    ticketId,
-    filmId,
-    filmDate,
-    ticketQuantity,
+export const TicketsItem = ({
+  userId,
+  ticketId,
+  filmId,
+  filmDate,
+  ticketQuantity,
   }) => {
   const [totalCost, setTotalCost] = useState(0);
 
@@ -45,16 +44,19 @@ export const TicketsItem = (
           {film.title}
         </div>
         <div className="ticket__inf">
-          One ticket cost : {film.price}
+          One ticket cost :
+          {film.price}
         </div>
         <div className="ticket__inf">
           {filmDate}
         </div>
         <div className="ticket__inf">
-          Tickets : {ticketQuantity}
+          Tickets :
+          {ticketQuantity}
         </div>
         <div className="ticket__inf">
-          Total tickets cost : {totalCost}
+          Total tickets cost :
+          {totalCost}
         </div>
         <Button onClick={handleDeleteTicket}>
           CANCEL THE BOOKING

@@ -6,7 +6,7 @@ import {
   where,
   updateDoc,
   doc,
-  deleteDoc
+  deleteDoc,
 } from 'firebase/firestore';
 import { db } from '../../firebase.config';
 
@@ -29,8 +29,8 @@ function* getUserListSaga() {
     const querySnapshot = yield getDocs(q);
 
     const userList = [];
-    querySnapshot.forEach((doc) => {
-      userList.push({id: doc.id, ...doc.data()});
+    querySnapshot.forEach((document) => {
+      userList.push({ id: document.id, ...document.data() });
     });
 
     yield put(getUsersListSuccess(userList));
@@ -61,11 +61,11 @@ function* deleteUserSaga(action) {
 
     const usersCollection = collection(db, 'users');
     const usersQuerySnapshot = yield call(getDocs, usersCollection);
-    const userList = usersQuerySnapshot.docs.map((doc) => doc.data()).filter((user) => user.role === 'user');
+    const userList = usersQuerySnapshot.docs.map((document) => document.data()).filter((user) => user.role === 'user');
 
     const ticketsCollection = collection(db, 'tickets');
     const ticketsQuerySnapshot = yield call(getDocs, ticketsCollection);
-    const ticketsToDelete = ticketsQuerySnapshot.docs.filter((doc) => doc.data().userID === userId);
+    const ticketsToDelete = ticketsQuerySnapshot.docs.filter((document) => document.data().userID === userId);
 
     for (const ticketDoc of ticketsToDelete) {
       yield call(deleteDoc, doc(db, 'tickets', ticketDoc.id));

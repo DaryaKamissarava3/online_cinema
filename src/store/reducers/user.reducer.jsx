@@ -19,22 +19,23 @@ const initialState = {
     email: null,
     role: null,
     requestDeleteAccount: false,
-    deleteUser:false,
+    deleteUser: false,
   },
   users: [],
-}
+};
 
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER:
+      const { id, displayName, email, role } = action.payload;
       return {
         ...state,
         user: {
-          id: action.payload.id,
-          name: action.payload.displayName,
-          email: action.payload.email,
-          role: action.payload.role,
-        }
+          id,
+          name:displayName,
+          email,
+          role,
+        },
       };
     case CLEAR_USER:
       return {
@@ -43,7 +44,7 @@ export const userReducer = (state = initialState, action) => {
           name: null,
           email: null,
           role: null,
-        }
+        },
       };
     case DELETE_USER:
       return {
@@ -118,6 +119,6 @@ export const userReducer = (state = initialState, action) => {
         error: action.payload,
       };
     default:
-      return state
+      return state;
   }
-}
+};

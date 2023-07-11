@@ -19,10 +19,12 @@ export const UserAccount = () => {
       <h1>Account Information</h1>
       <div>
         <div>
-          Name : {user.name}
+          Name :
+          {user.name}
         </div>
         <div>
-          Email : {user.email}
+          Email :
+          {user.email}
         </div>
         <Button onClick={handleRequestToDeleteAccount}>REQUEST TO DELETE ACCOUNT</Button>
       </div>

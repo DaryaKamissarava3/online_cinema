@@ -2,14 +2,13 @@ import React from 'react';
 
 import './Slider.css';
 
-export const Slider = (
-  {
-    sliderBtn,
-    changeSlide,
-    classForBtn,
-    minNumberOfImg,
-    maxNumberOfImg,
-    numberOfImg,
+export const Slider = ({
+  sliderBtn,
+  changeSlide,
+  classForBtn,
+  minNumberOfImg,
+  maxNumberOfImg,
+  numberOfImg,
   }) => {
   if (!(minNumberOfImg === 0 || maxNumberOfImg >= numberOfImg)) {
     return <img

@@ -7,7 +7,7 @@ import { getFilmList } from '../../store/actions/filmsActions';
 import { FilmsItem } from '../FilmsItem';
 import { Slider } from '../Slider';
 
-import More from './../../assets/images/more.svg';
+import More from '../../assets/images/more.svg';
 import './Films.css';
 
 export const Films = () => {

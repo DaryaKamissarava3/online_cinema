@@ -1,10 +1,17 @@
-import {put, call, takeEvery } from 'redux-saga/effects';
-import { LOGIN_USER, LOGOUT_USER, REGISTER_USER } from '../actions/actionTypes';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { auth, db } from '../../firebase.config';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { put, call, takeEvery } from 'redux-saga/effects';
 
-import { loginUserFailure, loginUserSuccess, logoutUserSuccess, registerUserFailure, registerUserSuccess } from '../actions/authActions';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { auth, db } from '../../firebase.config';
+
+import {
+  loginUserFailure,
+  loginUserSuccess,
+  logoutUserSuccess,
+  registerUserFailure,
+  registerUserSuccess,
+} from '../actions/authActions';
+import { LOGIN_USER, LOGOUT_USER, REGISTER_USER } from '../actions/actionTypes';
 import { clearUser, setUser } from '../actions/userActions';
 
 function* registerUserSaga(action) {
