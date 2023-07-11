@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getUsersList } from '../../store/actions/userActions';
+import { getUsersList } from '../../../../store/actions/userActions';
 import { UserItem } from '../UserItem';
 
 import './ViewUsers.css';

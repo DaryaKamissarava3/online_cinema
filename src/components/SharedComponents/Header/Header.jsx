@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 import { Search } from '../Search';
 
-import { logoutUser } from '../../store/actions/authActions';
+import { logoutUser } from '../../../store/actions/authActions';
 
 import './Header.css';
 

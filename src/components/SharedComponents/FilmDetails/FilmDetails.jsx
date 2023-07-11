@@ -3,8 +3,8 @@ import { Button, Select, MenuItem } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { deleteFilm } from '../../store/actions/filmsActions';
-import { bookedTicket } from '../../store/actions/ticketActions';
+import { deleteFilm } from '../../../store/actions/filmsActions';
+import { bookedTicket } from '../../../store/actions/ticketActions';
 
 import './FilmDetails.css';
 

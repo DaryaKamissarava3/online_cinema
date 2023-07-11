@@ -3,7 +3,7 @@ import { Button } from '@mui/material';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { deleteTickets } from '../../store/actions/ticketActions';
+import { deleteTickets } from '../../../store/actions/ticketActions';
 
 import './TicketsItem.css';
 

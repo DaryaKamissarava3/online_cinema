@@ -5,9 +5,9 @@ import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
-import { storage } from '../../firebase.config';
+import { storage } from '../../../../firebase.config';
 
-import { addFilm } from '../../store/actions/filmsActions';
+import { addFilm } from '../../../../store/actions/filmsActions';
 
 import './AddFilms.css';
 

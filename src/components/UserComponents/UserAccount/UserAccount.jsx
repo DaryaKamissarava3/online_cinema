@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@mui/material';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { requestDeleteAccount } from '../../store/actions/userActions';
+import { requestDeleteAccount } from '../../../store/actions/userActions';
 
 import './UserAccount.css';
 

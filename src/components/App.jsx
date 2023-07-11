@@ -7,17 +7,17 @@ import {
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { Navigation } from './Navigation';
+import { Navigation } from './SharedComponents/Navigation';
 import { AdminPage } from '../pages/AdminPage';
 import { Login } from '../pages/Login';
 import { Registration } from '../pages/Registration';
-import { MainPage } from '../pages/MainPage';
-import { AddFilms } from './AddFilms';
-import { ViewUsers } from './ViewUsers';
-import { Films } from './Films';
-import { FilmDetails } from './FilmDetails';
-import { UserTickets } from './UserTickets';
-import { UserAccount } from './UserAccount';
+import { MainPage } from './UserComponents/MainPage';
+import { AddFilms } from '../pages/AdminPage/AdminComponents/AddFilms';
+import { ViewUsers } from '../pages/AdminPage/AdminComponents/ViewUsers';
+import { Films } from './SharedComponents/Films';
+import { FilmDetails } from './SharedComponents/FilmDetails';
+import { UserTickets } from './UserComponents/UserTickets';
+import { UserAccount } from './UserComponents/UserAccount';
 import { About } from '../pages/About';
 
 function App() {
