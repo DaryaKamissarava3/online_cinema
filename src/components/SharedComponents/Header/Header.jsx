@@ -1,21 +1,42 @@
-import React from 'react';
-import { Button, Container } from '@mui/material';
+import React, { useState } from 'react';
+import { Button, Container, Input } from '@mui/material';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-
-import { Search } from '../Search';
 
 import { logoutUser } from '../../../store/actions/authActions';
 
 import './Header.css';
 
-export const Header = () => {
+export const Header = ({updateClassStatus, updateDataSearch}) => {
+  const [searchValue, setSearchValue] = useState('');
+
+  const films = useSelector((state) => state.film.films);
   const loggedIn = useSelector((state) => state.auth.isLoggedIn === true);
+
   const dispatch = useDispatch();
 
   const handleLogout = () => {
     dispatch(logoutUser());
+  };
+
+  const handleInput = (event) => {
+    setSearchValue(event.target.value);
+  };
+
+  const findMatchesInArray = (value) => {
+    const string = value.toString().toLowerCase();
+    return films.filter((item) => item.title.toLowerCase().includes(string));
+  };
+
+  const handleSearch = () => {
+    const res = findMatchesInArray(searchValue);
+    if (res.length === 0) {
+      alert('No films found');
+      return;
+    }
+    updateClassStatus((prevState) => !prevState);
+    updateDataSearch(res);
   };
 
   return (
@@ -28,7 +49,19 @@ export const Header = () => {
         </div>
         <div className="nav__block">
           <span className="nav__block__item">
-            <Search />
+            <div>
+      <Input
+        type="text"
+        placeholder="Search films"
+        onChange={handleInput}
+      />
+      <Button
+        onClick={handleSearch}
+        variant="outlined"
+      >
+        Search
+      </Button>
+    </div>
           </span>
           <span className="nav__block__item">
             {loggedIn &&

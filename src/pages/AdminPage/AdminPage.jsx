@@ -2,9 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './AdminPage.css';
+import {Header} from "../../components/SharedComponents/Header";
 
 export const AdminPage = () => (
   <div className="admin__page__container">
+    <Header />
     <h1 className="admin__page__title">Admin Page</h1>
     <div className="admin__page__item__block">
       <div className="admin__page__item">

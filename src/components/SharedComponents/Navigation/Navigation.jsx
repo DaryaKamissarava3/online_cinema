@@ -23,7 +23,6 @@ export const Navigation = () => {
             <Link to="/registration" className="nav-registration">Registration</Link>
           </Button>
         }
-        {isAuth && <Header />}
       </div>
     </div>
   );
