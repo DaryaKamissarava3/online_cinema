@@ -13,7 +13,8 @@ export const MainPage = () => {
     <>
       <Header
         updateClassStatus={setClassNameOfSearch}
-        updateDataSearch={setResultOfSearch}/>
+        updateDataSearch={setResultOfSearch}
+      />
       <SearchFilmResult
         isActiveBlock={isClassNameOfSearch}
         foundResultsOfSearch={resultOfSearch}

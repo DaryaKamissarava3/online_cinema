@@ -1,29 +1,25 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, {useState} from 'react';
 
 import './AdminPage.css';
-import {Header} from "../../components/SharedComponents/Header";
+import { Header } from '../../components/SharedComponents/Header';
+import { SearchFilmResult } from '../../components/SharedComponents/SearchFilmResult';
+import { AdminNavigation } from './AdminComponents/AdminNavigation';
 
-export const AdminPage = () => (
-  <div className="admin__page__container">
-    <Header />
-    <h1 className="admin__page__title">Admin Page</h1>
-    <div className="admin__page__item__block">
-      <div className="admin__page__item">
-        <Link to="/admin/add-films" className="item__link">
-          Add films
-        </Link>
-      </div>
-      <div className="admin__page__item">
-        <Link to="/admin/view-users" className="item__link">
-          View all users
-        </Link>
-      </div>
-      <div className="admin__page__item">
-        <Link to="/admin/films" className="item__link">
-          Films list
-        </Link>
-      </div>
-    </div>
-  </div>
-);
+export const AdminPage = () => {
+  const [resultOfSearch, setResultOfSearch] = useState([]);
+  const [isClassNameOfSearch, setClassNameOfSearch] = useState(false);
+
+  return (
+    <>
+      <Header
+        updateClassStatus={setClassNameOfSearch}
+        updateDataSearch={setResultOfSearch}
+      />
+      <SearchFilmResult
+        isActiveBlock={isClassNameOfSearch}
+        foundResultsOfSearch={resultOfSearch}
+      />
+      <AdminNavigation />
+    </>
+  );
+};

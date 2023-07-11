@@ -43,7 +43,7 @@ export const Header = ({updateClassStatus, updateDataSearch}) => {
     <Container maxWidth="false" className="header__container">
       <nav className="header__navigation">
         <div className="nav__block">
-          <Link className="main__logo__link" to='`/`'>
+          <Link className="main__logo__link" to="/">
             <h1>LOGO</h1>
           </Link>
         </div>
