@@ -1,4 +1,4 @@
-import { put, call, takeEvery } from 'redux-saga/effects';
+ import { put, call, takeEvery } from 'redux-saga/effects';
 
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
@@ -25,10 +25,6 @@ function* registerUserSaga(action) {
     );
     const user = userCredential.user;
 
-    yield updateProfile(user, {
-      displayName: `${userData.firstName} ${userData.lastName}`,
-    });
-
     const userRef = doc(db, 'users', user.uid);
     yield setDoc(userRef, {
       role: 'user',
@@ -48,28 +44,30 @@ function* loginUserSaga(action) {
   const { email, password } = action.payload;
 
   try {
-    const userCredential = yield call(
+    const { user } = yield call(
       signInWithEmailAndPassword,
       auth,
       email,
       password,
     );
-    const user = userCredential.user;
 
     const userDocRef = doc(db, 'users', user.uid);
     const userDocSnapshot = yield call(getDoc, userDocRef);
 
-    let userRole = null;
-    if (userDocSnapshot.exists()) {
-      userRole = userDocSnapshot.data().role;
-    }
-
     const userData = {
       id: user.uid,
       email: user.email,
-      displayName: user.displayName,
-      role: userRole,
+      firstName: null,
+      lastName: null,
+      role: null,
     };
+
+    if (userDocSnapshot.exists()) {
+      const { role, firstName, lastName } = userDocSnapshot.data();
+      userData.role = role;
+      userData.firstName = firstName;
+      userData.lastName = lastName;
+    }
 
     yield put(loginUserSuccess());
     yield put(setUser(userData));

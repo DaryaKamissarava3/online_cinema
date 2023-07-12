@@ -9,13 +9,16 @@ import {
   REQUEST_DELETE_ACCOUNT,
   REQUEST_DELETE_ACCOUNT_FAILURE,
   REQUEST_DELETE_ACCOUNT_SUCCESS,
-  SET_USER,
+  SET_USER, UPDATE_USER,
+  UPDATE_USER_FAILURE,
+  UPDATE_USER_SUCCESS,
 } from '../actions/actionTypes';
 
 const initialState = {
   user: {
     id: null,
-    name: null,
+    firstName: null,
+    lastName: null,
     email: null,
     role: null,
     requestDeleteAccount: false,
@@ -27,12 +30,13 @@ const initialState = {
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER:
-      const { id, displayName, email, role } = action.payload;
+      const { id, firstName, lastName, email, role } = action.payload;
       return {
         ...state,
         user: {
           id,
-          name:displayName,
+          firstName,
+          lastName,
           email,
           role,
         },
@@ -41,10 +45,30 @@ export const userReducer = (state = initialState, action) => {
       return {
         ...state,
         user: {
-          name: null,
+          firstName: null,
+          lastName: null,
           email: null,
           role: null,
         },
+      };
+    case UPDATE_USER:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          firstName: action.payload.firstName,
+          lastName: action.payload.lastName,
+        },
+      };
+    case UPDATE_USER_SUCCESS:
+      return {
+        ...state,
+        error: null,
+      };
+    case UPDATE_USER_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
       };
     case DELETE_USER:
       return {

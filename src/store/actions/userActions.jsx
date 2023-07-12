@@ -6,7 +6,13 @@ import {
   GET_USERS_LIST_SUCCESS,
   REQUEST_DELETE_ACCOUNT,
   REQUEST_DELETE_ACCOUNT_SUCCESS,
-  REQUEST_DELETE_ACCOUNT_FAILURE, DELETE_USER_FAILURE, DELETE_USER_SUCCESS, DELETE_USER,
+  REQUEST_DELETE_ACCOUNT_FAILURE,
+  DELETE_USER_FAILURE,
+  DELETE_USER_SUCCESS,
+  DELETE_USER,
+  UPDATE_USER,
+  UPDATE_USER_FAILURE,
+  UPDATE_USER_SUCCESS,
 } from './actionTypes';
 
 export const setUser = (userData) => ({
@@ -57,5 +63,19 @@ export const deleteUserSuccess = () => ({
 
 export const deleteUserFailure = (error) => ({
   type: DELETE_USER_FAILURE,
+  payload: error,
+});
+
+export const updateUser = (payload) => ({
+  type: UPDATE_USER,
+  payload,
+});
+
+export const updateUserSuccess = () => ({
+  type: UPDATE_USER_SUCCESS,
+});
+
+export const updateUserFailure = (error) => ({
+  type: UPDATE_USER_FAILURE,
   payload: error,
 });

@@ -1,4 +1,4 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
+import {call, put, takeEvery} from 'redux-saga/effects';
 import {
   collection,
   getDocs,
@@ -8,7 +8,7 @@ import {
   doc,
   deleteDoc,
 } from 'firebase/firestore';
-import { db } from '../../firebase.config';
+import {db} from '../../firebase.config';
 
 import {
   deleteUserFailure,
@@ -16,10 +16,10 @@ import {
   getUsersListFailure,
   getUsersListSuccess,
   requestDeleteAccountFailure,
-  requestDeleteAccountSuccess,
+  requestDeleteAccountSuccess, updateUserFailure, updateUserSuccess,
 } from '../actions/userActions';
-import { DELETE_USER, GET_USERS_LIST, REQUEST_DELETE_ACCOUNT } from '../actions/actionTypes';
-import { deleteTicketsSuccess } from '../actions/ticketActions';
+import {DELETE_USER, GET_USERS_LIST, REQUEST_DELETE_ACCOUNT, UPDATE_USER} from '../actions/actionTypes';
+import {deleteTicketsSuccess} from '../actions/ticketActions';
 
 function* getUserListSaga() {
   try {
@@ -30,7 +30,7 @@ function* getUserListSaga() {
 
     const userList = [];
     querySnapshot.forEach((document) => {
-      userList.push({ id: document.id, ...document.data() });
+      userList.push({id: document.id, ...document.data()});
     });
 
     yield put(getUsersListSuccess(userList));
@@ -44,7 +44,7 @@ function* makeRequestToDeleteAccount(action) {
     const userId = action.payload;
 
     const userRef = doc(collection(db, 'users'), userId);
-    yield updateDoc(userRef, { requestDeleteAccount: true });
+    yield updateDoc(userRef, {requestDeleteAccount: true});
 
     yield put(requestDeleteAccountSuccess());
     window.alert('Request sent successfully!!!!');
@@ -80,8 +80,26 @@ function* deleteUserSaga(action) {
   }
 }
 
+function* updateUserSaga(action) {
+  try {
+    const {userId, firstName, lastName} = action.payload;
+
+    const userDocRef = doc(db, 'users', userId);
+    yield call(updateDoc, userDocRef, {
+      firstName: firstName,
+      lastName: lastName,
+    });
+
+    yield put(updateUserSuccess());
+    window.alert('User updated!!!');
+  } catch (error) {
+    yield put(updateUserFailure(error.message));
+  }
+}
+
 export function* userSaga() {
   yield takeEvery(GET_USERS_LIST, getUserListSaga);
   yield takeEvery(REQUEST_DELETE_ACCOUNT, makeRequestToDeleteAccount);
   yield takeEvery(DELETE_USER, deleteUserSaga);
+  yield takeEvery(UPDATE_USER, updateUserSaga);
 }
