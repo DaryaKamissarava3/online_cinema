@@ -1,4 +1,4 @@
-import { put, takeEvery } from 'redux-saga/effects';
+import { call, put, takeEvery } from 'redux-saga/effects';
 
 import {
   addDoc,
@@ -6,7 +6,7 @@ import {
   getDocs,
   deleteDoc,
   doc,
-  getDoc,
+  getDoc, updateDoc,
 } from 'firebase/firestore';
 import { deleteObject, ref } from 'firebase/storage';
 import { db, storage } from '../../firebase.config';
@@ -17,9 +17,9 @@ import {
   deleteFilmFailure,
   deleteFilmSuccess,
   getFilmListFailure,
-  getFilmListSuccess,
+  getFilmListSuccess, updateFilmFailure, updateFilmSuccess,
 } from '../actions/filmsActions';
-import { ADD_FILM, DELETE_FILM, GET_FILM_LIST } from '../actions/actionTypes';
+import { ADD_FILM, DELETE_FILM, GET_FILM_LIST, UPDATE_FILM } from '../actions/actionTypes';
 
 function* addFilmSaga(action) {
   try {
@@ -35,7 +35,7 @@ function* addFilmSaga(action) {
       tags: film.tags,
     });
 
-    yield put(addFilmSuccess(film));
+    yield put(addFilmSuccess());
     window.alert('Film added!!!!');
   } catch (error) {
     yield put(addFilmFailure(error.message));
@@ -82,8 +82,39 @@ function* getFilmListSaga() {
   }
 }
 
+function* updateFilmSaga(action) {
+  try {
+    const {id, title, description, price, startDate, endDate, tags} = action.payload;
+
+    const filmDocRef = doc(db, 'films', id);
+
+    yield call(updateDoc, filmDocRef, {
+      title: title,
+      description: description,
+      price: price,
+      startDate: startDate,
+      endDate: endDate,
+      tags: tags,
+    });
+
+    const querySnapshot = yield getDocs(collection(db, 'films'));
+    const films = [];
+
+    querySnapshot.forEach((document) => {
+      films.push({ id: document.id, ...document.data() });
+    });
+    yield put(updateFilmSuccess());
+    yield put(getFilmListSuccess(films));
+
+    window.alert('Film updated successfully!');
+  } catch (error) {
+    yield put(updateFilmFailure(error.message));
+  }
+}
+
 export function* filmSaga() {
   yield takeEvery(ADD_FILM, addFilmSaga);
   yield takeEvery(DELETE_FILM, deleteFilmSaga);
   yield takeEvery(GET_FILM_LIST, getFilmListSaga);
+  yield takeEvery(UPDATE_FILM, updateFilmSaga);
 }

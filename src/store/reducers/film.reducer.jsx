@@ -7,7 +7,7 @@ import {
   DELETE_FILM_SUCCESS,
   GET_FILM_LIST,
   GET_FILM_LIST_FAILURE,
-  GET_FILM_LIST_SUCCESS,
+  GET_FILM_LIST_SUCCESS, UPDATE_FILM, UPDATE_FILM_FAILURE, UPDATE_FILM_SUCCESS,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -47,6 +47,30 @@ export const filmReducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
       };
+    case UPDATE_FILM:
+      const filmIndex = state.films.findIndex((film) => film.id === action.payload.id);
+
+      if (filmIndex !== -1) {
+        const updatedFilms = [...state.films];
+        updatedFilms[filmIndex] = action.payload;
+
+        return {
+          ...state,
+          films: updatedFilms,
+          error: null,
+        };
+      }
+      return state;
+    case UPDATE_FILM_SUCCESS:
+      return {
+        ...state,
+        error: null,
+      }
+    case UPDATE_FILM_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+      }
     case GET_FILM_LIST:
       return {
         ...state,

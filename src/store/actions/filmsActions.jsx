@@ -7,7 +7,7 @@ import {
   DELETE_FILM_SUCCESS,
   GET_FILM_LIST,
   GET_FILM_LIST_FAILURE,
-  GET_FILM_LIST_SUCCESS,
+  GET_FILM_LIST_SUCCESS, UPDATE_FILM, UPDATE_FILM_FAILURE, UPDATE_FILM_SUCCESS,
 } from './actionTypes';
 
 export const addFilm = (data) => ({
@@ -15,9 +15,8 @@ export const addFilm = (data) => ({
   payload: data,
 });
 
-export const addFilmSuccess = (data) => ({
+export const addFilmSuccess = () => ({
   type: ADD_FILM_SUCCESS,
-  payload: data,
 });
 
 export const addFilmFailure = (error) => ({
@@ -51,5 +50,19 @@ export const getFilmListSuccess = (payload) => ({
 
 export const getFilmListFailure = (error) => ({
   type: GET_FILM_LIST_FAILURE,
+  payload: error,
+});
+
+export const updateFilm = (payload) => ({
+  type: UPDATE_FILM,
+  payload,
+});
+
+export const updateFilmSuccess = () => ({
+  type: UPDATE_FILM_SUCCESS,
+});
+
+export const updateFilmFailure = (error) => ({
+  type: UPDATE_FILM_FAILURE,
   payload: error,
 });

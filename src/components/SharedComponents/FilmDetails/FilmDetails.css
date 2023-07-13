@@ -16,7 +16,7 @@
 }
 
 .film__title{
-  margin: 20px 0 15px 60px;
+  margin: 20px 0 15px 20px;
   font-size: 34px;
 }
 
@@ -24,6 +24,11 @@
   font-size: 24px;
   padding: 20px;
   border: 1px solid black;
+}
+
+.film__description__admin{
+  font-size: 24px;
+  padding: 20px;
 }
 
 .film__price,

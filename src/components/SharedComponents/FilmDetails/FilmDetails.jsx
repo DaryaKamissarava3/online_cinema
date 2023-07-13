@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
-import { Button, Select, MenuItem } from '@mui/material';
+import {
+  Button,
+  Select,
+  MenuItem,
+  TextField,
+  FormControl,
+  InputLabel,
+  OutlinedInput,
+  InputAdornment
+} from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { deleteFilm } from '../../../store/actions/filmsActions';
+import { deleteFilm, updateFilm } from '../../../store/actions/filmsActions';
 import { bookedTicket } from '../../../store/actions/ticketActions';
 
 import './FilmDetails.css';
@@ -19,14 +28,21 @@ export const FilmDetails = () => {
   const userRole = useSelector((state) => state.user.user.role);
   const userId = useSelector((state) => state.user.user.id);
 
-  const [selectedDate, setSelectedDate] = useState('');
-  const [ticketQuantity, setTicketQuantity] = useState(1);
-
   const filmInformation = films.find((el) => {
     if (el.id === params.id) {
       return el;
     }
   });
+
+  const [title, setTitle] = useState(filmInformation.title);
+  const [description, setDescription] = useState(filmInformation.description);
+  const [price, setPrice] = useState(filmInformation.price);
+  const [startDate, setStartDate] = useState(filmInformation.startDate);
+  const [endDate, setEndDate] = useState(filmInformation.startDate);
+  const [tags, setTags] = useState(filmInformation.tags);
+
+  const [selectedDate, setSelectedDate] = useState('');
+  const [ticketQuantity, setTicketQuantity] = useState(1);
 
   const handleDateSelection = (date) => {
     setSelectedDate(date);
@@ -38,7 +54,7 @@ export const FilmDetails = () => {
     const endDate = new Date(filmInformation.endDate);
 
     for (let date = startDate; date <= endDate; date.setDate(date.getDate() + 1)) {
-      const formattedDate = date.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
+      const formattedDate = date.toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'});
       buttons.push(
         <button
           key={formattedDate}
@@ -72,47 +88,113 @@ export const FilmDetails = () => {
     navigate('/');
   };
 
+  const handleUpdateFilm=()=>{
+    const updatedFilm={
+      id:filmInformation.id,
+      title:title,
+      description:description,
+      price:price,
+      startDate:startDate,
+      endDate:endDate,
+      tags:tags,
+    }
+
+    dispatch(updateFilm(updatedFilm));
+  }
   return (
     <section className="film__details">
       <div className="film__inner">
         <div className="film__image first-block">
           <div>
-            <img src={filmInformation.image} className="film-img" alt="img" />
+            <img src={filmInformation.image} className="film-img" alt="img"/>
           </div>
         </div>
         <div className="film__description__block">
-          <div className="film__title">
-            {filmInformation.title}
-          </div>
-          <div className="film__description">
-            {filmInformation.description}
-          </div>
-          <div className="film__price">
-            Cost:
-            {filmInformation.price} $
-          </div>
-          <div className="film__start__date">
-            Film start date:
-            {filmInformation.startDate}
-          </div>
-          <div className="film__end__date">
-            Film end date:
-            {filmInformation.endDate}
-          </div>
-          <div className="film__tags">
-            Tags:
-            {filmInformation.tags}
-          </div>
           <div>
             {userRole === 'admin' && (
-              <div>
+              <>
+                <div className="film__title">
+                  Title:
+                  <br />
+                  <TextField
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
+                </div>
+                <div className="film__description__admin">
+                  Description:
+                  <br />
+                  <TextField
+                    value={description}
+                    multiline
+                    onChange={(e) => setDescription(e.target.value)}
+                  />
+                </div>
+                <div className="film__price">
+                  Cost:
+                  <FormControl fullWidth sx={{ m: 1 }}>
+                    <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
+                    <OutlinedInput
+                      id="outlined-adornment-amount"
+                      startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                      label="Amount"
+                      value={price}
+                      onChange={(e) => setPrice(e.target.value)}
+                    />
+                  </FormControl>
+                </div>
+                <div className="film__start__date">
+                  Film start date:
+                  <TextField
+                    value={startDate}
+                    onChange={(e) => setStartDate(e.target.value)}
+                  />
+                </div>
+                <div className="film__end__date">
+                  Film end date:
+                  <TextField
+                    value={endDate}
+                    onChange={(e) => setEndDate(e.target.value)}
+                  />
+                </div>
+                <div className="film__tags">
+                  Tags:
+                  <TextField
+                    value={tags}
+                    onChange={(e) => setTags(e.target.value)}
+                  />
+                </div>
+                <Button onClick={handleUpdateFilm}>Update film </Button>
+                <br/>
                 <Button onClick={handleDeleteFilm}>DELETE FILM</Button>
-              </div>
+              </>
             )}
           </div>
           <div>
             {userRole === 'user' && (
               <>
+                <div className="film__title">
+                  {filmInformation.title}
+                </div>
+                <div className="film__description">
+                  {filmInformation.description}
+                </div>
+                <div className="film__price">
+                  Cost:
+                  {filmInformation.price} $
+                </div>
+                <div className="film__start__date">
+                  Film start date:
+                  {filmInformation.startDate}
+                </div>
+                <div className="film__end__date">
+                  Film end date:
+                  {filmInformation.endDate}
+                </div>
+                <div className="film__tags">
+                  Tags:
+                  {filmInformation.tags}
+                </div>
                 <div className="date-buttons-container">{generateDateButtons()}</div>
                 <Select
                   value={ticketQuantity.toString()}
