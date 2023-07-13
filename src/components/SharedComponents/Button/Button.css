@@ -9,11 +9,11 @@
   border-radius: 6px;
 }
 
-.register__btn{
+.register__btn {
   background: linear-gradient(to right, #7b34c7, #d096e7);
 }
 
-.login__btn{
+.login__btn {
   background: linear-gradient(to right, #fa813b, #f5d04e);
 }
 
@@ -29,7 +29,7 @@
   box-shadow: 7px 7px 3px #d7b443;
 }
 
-.nav__btn{
+.nav__btn, .navbar__btn {
   margin-right: 60px;
   width: 180px;
   height: 45px;
@@ -41,7 +41,31 @@
   border-radius: 10px;
 }
 
-.nav__btn:hover{
+.nav__btn:hover,
+.navbar__btn:hover {
   cursor: pointer;
   box-shadow: 5px 5px 3px #6a429a;
 }
+
+.book__ticket__btn {
+  margin-top: 30px;
+  width: 300px;
+  height: 50px;
+  font-weight: 600;
+  font-size: 24px;
+  font-family: cursive;
+  color: #ff8a16;
+  background-color: #fff157;
+  box-shadow: 5px 4px 6px #f6b252;
+  border: none;
+  border-radius: 12px;
+  transition: background-color linear .3s, color linear .3s;
+}
+
+.book__ticket__btn:hover {
+  cursor: pointer;
+  color: #4b2986;
+  background-color: #bba3f8;
+  box-shadow: 5px 4px 6px #c9c0f1;
+}
+

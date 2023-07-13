@@ -15,16 +15,13 @@ export const FilmsItem = ({
       <p className="film__item__title">
         {title}</p>
       <p className="film__item__field">
-        Price:
-        {price}
+        Price : {price} $
       </p>
       <p className="film__item__field">
-        startDate:
-        {startDate}
+        start Date : {startDate}
       </p>
       <p className="film__item__field">
-        endDate:
-        {endDate}
+        end Date : {endDate}
       </p>
     </div>
   );

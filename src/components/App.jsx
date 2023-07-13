@@ -27,8 +27,9 @@ function App() {
   return (
     <BrowserRouter>
       <div className="app">
+        <Navigation />
           <Routes>
-            { loggedOut && <Navigation /> ? (
+            { loggedOut  ? (
               <>
                 <Route path="/registration" element={<Registration />} />
                 <Route path="/login" element={<Login />} />

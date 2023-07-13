@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Button,
   Select,
   MenuItem,
   TextField,
@@ -16,6 +15,7 @@ import { deleteFilm, updateFilm } from '../../../store/actions/filmsActions';
 import { bookedTicket } from '../../../store/actions/ticketActions';
 
 import './FilmDetails.css';
+import {Button} from "../Button";
 
 export const FilmDetails = () => {
   const params = useParams();
@@ -194,18 +194,18 @@ export const FilmDetails = () => {
                   {filmInformation.tags}
                 </div>
                 <div className="date-buttons-container">{generateDateButtons()}</div>
-                <Select
+                <select
                   value={ticketQuantity.toString()}
                   onChange={(event) => setTicketQuantity(event.target.value)}
                 >
-                  <MenuItem value={1}>1 Ticket</MenuItem>
-                  <MenuItem value={2}>2 Tickets</MenuItem>
-                  <MenuItem value={3}>3 Tickets</MenuItem>
-                  <MenuItem value={4}>4 Tickets</MenuItem>
-                  <MenuItem value={5}>5 Tickets</MenuItem>
-                </Select>
+                  <option value={1}>1 Ticket</option>
+                  <option value={2}>2 Tickets</option>
+                  <option value={3}>3 Tickets</option>
+                  <option value={4}>4 Tickets</option>
+                  <option value={5}>5 Tickets</option>
+                </select>
                 <div>
-                  <Button onClick={handleBookingTicket}>BOOK TICKET</Button>
+                  <Button clickFunction={handleBookingTicket} btnText="BOOK TICKET" className="book__ticket__btn" />
                 </div>
               </>
             )}

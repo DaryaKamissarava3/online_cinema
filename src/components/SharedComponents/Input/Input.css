@@ -1,4 +1,4 @@
-.auth__input{
+.auth__input {
   margin: 15px 0;
   width: 300px;
   height: 50px;
@@ -9,10 +9,21 @@
   background: #ffffff;
 }
 
-.register{
+.register {
   border: 2px solid #7b34c7;
 }
 
-.login{
+.login {
   border: 2px solid #daba2f;
+}
+
+.search__input {
+  margin-right: 40px;
+  width: 200px;
+  height: 40px;
+  font-size: 20px;
+  font-family: cursive;
+  border-radius: 0.4rem;
+  border-color: #c499f8;
+  background: #ffffff;
 }

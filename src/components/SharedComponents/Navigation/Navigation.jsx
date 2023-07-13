@@ -1,11 +1,11 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {useSelector} from 'react-redux';
+import { Link } from 'react-router-dom';
+import { useSelector} from 'react-redux';
 
-import {Header} from '../Header';
+import { Header } from '../Header';
+import { Button } from '../Button';
 
 import './Navigation.css';
-import {Button} from "../Button";
 
 export const Navigation = () => {
   const isAuth = useSelector((state) => state.auth.isLoggedIn === true);
@@ -23,6 +23,7 @@ export const Navigation = () => {
             <Button className="nav__btn" btnText="Registration"/>
           </Link>
         }
+        { isAuth && <Header /> }
       </div>
     </div>
   );

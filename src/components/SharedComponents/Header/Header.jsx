@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import { Button, Container, Input } from '@mui/material';
+import React, {useState} from 'react';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 
-import { logoutUser } from '../../../store/actions/authActions';
+import {useSelector, useDispatch} from 'react-redux';
+import {Link} from 'react-router-dom';
+
+import {logoutUser} from '../../../store/actions/authActions';
 
 import './Header.css';
+import {Input} from "../Input";
+import {Button} from "../Button";
 
 export const Header = ({updateClassStatus, updateDataSearch}) => {
   const [searchValue, setSearchValue] = useState('');
@@ -40,40 +42,36 @@ export const Header = ({updateClassStatus, updateDataSearch}) => {
   };
 
   return (
+    <div className="header__container">
       <nav className="header__navigation">
         <div className="nav__block">
           <Link className="main__logo__link" to="/">
-            <h1>LOGO</h1>
+            <h1 className="header__logo">LOGO</h1>
           </Link>
         </div>
         <div className="nav__block">
+          <Input
+            type="text"
+            className="search__input"
+            placeholder="Search films"
+            onChangeEvent={handleInput}
+          />
+          <Button
+            clickFunction={handleSearch}
+            className="navbar__btn"
+            btnText="Search"
+          />
           <span className="nav__block__item">
-            <div>
-      <Input
-        type="text"
-        placeholder="Search films"
-        onChange={handleInput}
-      />
-      <Button
-        onClick={handleSearch}
-        variant="outlined"
-      >
-        Search
-      </Button>
-    </div>
-          </span>
-          <span className="nav__block__item">
-            {loggedIn &&
-              <Button
-                onClick={handleLogout}
-                className="navbar__login"
-              >
-                Sign Out
-              </Button>
-            }
-          </span>
+          {loggedIn &&
+            <Button
+              clickFunction={handleLogout}
+              className="navbar__btn"
+              btnText="Sign Out"
+            />
+          }
+        </span>
         </div>
       </nav>
-
+    </div>
   );
 };

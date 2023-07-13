@@ -1,6 +1,10 @@
 .user__menu__container{
-  background-color: #eae5fd;
+  margin-top: 100px;
   margin-bottom: 80px;
+  background-color: #eae5fd;
+  border-width: 10px;
+  border-style: solid;
+  border-image: linear-gradient(to right, #ad6ef1, #e5c4fa) 1;
 }
 
 .user__menu__item__block{
@@ -17,15 +21,15 @@
   background-color: #CA4246;
   background-image: linear-gradient(
       45deg,
-      #0fda2e 16.666%,
-      #72d749 16.666%,
-      #78d26e 33.333%,
-      #4cd095 33.333%,
-      #279a89 50%,
-      #358ba4 50%,
-      #346193 66.666%,
-      #25458c 66.666%,
-      #4b2986 83.333%,
+      #fa1dca 16.666%,
+      #f348f1 16.666%,
+      #9951de 33.333%,
+      #af4cd0 33.333%,
+      #a870c7 50%,
+      #6537ab 50%,
+      #493493 66.666%,
+      #3f2980 66.666%,
+      #502496 83.333%,
       #210b79 83.333%);
   background-size: 100%;
   background-repeat: repeat;

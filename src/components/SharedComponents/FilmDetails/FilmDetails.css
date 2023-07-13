@@ -1,5 +1,5 @@
 .film__details {
-  margin: 50px 100px;
+  margin: 150px 100px;
 }
 
 .film__inner {
@@ -9,21 +9,29 @@
 
 .film-img {
   width: 400px;
+  box-shadow: 10px 10px 1px #66469d;
 }
 
 .film__description__block {
   margin-left: 40px;
+  font-family: cursive;
 }
 
 .film__title{
   margin: 20px 0 15px 20px;
   font-size: 34px;
+  font-weight: 700;
+  font-family: cursive;
+  color: #4b2986;
 }
 
 .film__description{
   font-size: 24px;
   padding: 20px;
-  border: 1px solid black;
+  color: white;
+  text-shadow: 4px 3px #4b2986;
+  border: 3px dashed #fab2fd;
+  background-color: #6740a4;
 }
 
 .film__description__admin{

@@ -1,25 +1,38 @@
+.header__container{
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+}
+
 .main__logo__link{
   text-decoration: none;
   font-size: 24px;
 }
 
 .header__navigation{
+  padding: 30px 60px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  background: linear-gradient(#ac86dc, #ecd6ff, white)  ;
 }
 
 .nav__block{
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .header__logo{
   margin-left: 80px;
-  font-size: 30px;
-  font-weight: 600;
+  font-size: 34px;
+  font-weight: 900;
   color: #4e2f86;
+  text-shadow: 4px 2px #bf9bfd;
 }
 
 .nav__block__item{
