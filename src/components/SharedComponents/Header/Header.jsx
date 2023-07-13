@@ -40,7 +40,6 @@ export const Header = ({updateClassStatus, updateDataSearch}) => {
   };
 
   return (
-    <Container maxWidth="false" className="header__container">
       <nav className="header__navigation">
         <div className="nav__block">
           <Link className="main__logo__link" to="/">
@@ -75,6 +74,6 @@ export const Header = ({updateClassStatus, updateDataSearch}) => {
           </span>
         </div>
       </nav>
-    </Container>
+
   );
 };

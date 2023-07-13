@@ -1,12 +1,13 @@
 import React from 'react';
-import { Button, Input } from '@mui/material';
 
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
 
-import { loginUser } from '../../store/actions/authActions';
+import {loginUser} from '../../store/actions/authActions';
 
 import './Login.css';
+import {Button} from "../../components/SharedComponents/Button";
+import {Input} from "../../components/SharedComponents/Input";
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -19,30 +20,36 @@ export const Login = () => {
     const password = formData.get('password');
 
     if (email && password) {
-      dispatch(loginUser({ email, password }));
+      dispatch(loginUser({email, password}));
       navigate('/');
     }
   };
 
   return (
     <div className="login__container">
-      <form onSubmit={handleSubmit}>
+      <div className="login__container__inner">
         <h1 className="login__title">Login page</h1>
-        <Input
-          type="email"
-          name="email"
-          placeholder="Enter email"
-          className="login__input"
-          autoComplete="off"
-        />
-        <Input
-          type="password"
-          name="password"
-          placeholder="Enter password"
-          className="login__input"
-        />
-        <Button variant="outlined" className="login__btn" type="submit">Login</Button>
-      </form>
+        <form onSubmit={handleSubmit} className="login__form">
+          <Input
+            type="email"
+            name="email"
+            placeholder="Enter email"
+            className="auth__input login"
+            inpAutoComplete="off"
+          />
+          <Input
+            type="password"
+            name="password"
+            placeholder="Enter password"
+            className="auth__input login"
+          />
+          <Button
+            className="auth__btn login__btn"
+            btnType="submit"
+            btnText="LOGIN"
+          />
+        </form>
+      </div>
     </div>
   );
 };

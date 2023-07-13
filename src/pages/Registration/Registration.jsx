@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Button, Input } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+
+import { Button } from '../../components/SharedComponents/Button';
+import { Input } from '../../components/SharedComponents/Input';
 
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../store/actions/authActions';
@@ -30,42 +32,38 @@ export const Registration = () => {
 
   return (
     <div className="register__container">
-      <h1 className="register__title">Registration page</h1>
-      <Input
-        type="text"
-        placeholder="Enter first name"
-        className="register__input"
-        value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
-      />
-      <Input
-        type="text"
-        placeholder="Enter last name"
-        className="register__input"
-        value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
-      />
-      <Input
-        type="email"
-        placeholder="Enter email"
-        className="register__input"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <Input
-        type="password"
-        placeholder="Enter password"
-        className="register__input"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <Button
-        onClick={handleRegister}
-        variant="outlined"
-        className="register__btn"
-      >
-        Register
-      </Button>
+      <div className="register__container__inner">
+        <h1 className="register__title">Registration page</h1>
+        <Input
+          type="text"
+          placeholder="Enter first name"
+          className="auth__input register"
+          value={firstName}
+          onChangeEvent={(e) => setFirstName(e.target.value)}
+        />
+        <Input
+          type="text"
+          placeholder="Enter last name"
+          className="auth__input register"
+          value={lastName}
+          onChangeEvent={(e) => setLastName(e.target.value)}
+        />
+        <Input
+          type="email"
+          placeholder="Enter email"
+          className="auth__input register"
+          value={email}
+          onChangeEvent={(e) => setEmail(e.target.value)}
+        />
+        <Input
+          type="password"
+          placeholder="Enter password"
+          className="auth__input register"
+          value={password}
+          onChangeEvent={(e) => setPassword(e.target.value)}
+        />
+        <Button className="auth__btn register__btn" clickFunction={handleRegister} btnText="REGISTER"/>
+      </div>
     </div>
   );
 };

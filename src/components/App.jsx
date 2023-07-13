@@ -27,10 +27,8 @@ function App() {
   return (
     <BrowserRouter>
       <div className="app">
-        <Navigation />
-        <div className="wrap">
           <Routes>
-            { loggedOut ? (
+            { loggedOut && <Navigation /> ? (
               <>
                 <Route path="/registration" element={<Registration />} />
                 <Route path="/login" element={<Login />} />
@@ -56,7 +54,6 @@ function App() {
               </>
             )}
           </Routes>
-        </div>
       </div>
     </BrowserRouter>
   );

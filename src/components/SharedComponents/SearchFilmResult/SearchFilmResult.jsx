@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FilmsItem } from '../FilmsItem';
 
+import './SearchFilmResult.css';
+
 export const SearchFilmResult = ({ isActiveBlock,foundResultsOfSearch }) => {
   const [arrowMin] = useState(0);
   const [arrowMax, setArrowMax] = useState(8);

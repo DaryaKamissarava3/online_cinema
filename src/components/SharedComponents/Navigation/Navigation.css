@@ -3,5 +3,5 @@
   display: flex;
   justify-content: right;
   align-items: center;
-  background-color: #a1b2f5;
+  background: linear-gradient(#ac86dc, #ecd6ff, white)  ;
 }

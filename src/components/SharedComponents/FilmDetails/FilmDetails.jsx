@@ -18,8 +18,6 @@ import { bookedTicket } from '../../../store/actions/ticketActions';
 import './FilmDetails.css';
 
 export const FilmDetails = () => {
-  window.scrollTo(0, 0);
-
   const params = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();

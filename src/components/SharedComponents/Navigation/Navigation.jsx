@@ -1,11 +1,11 @@
 import React from 'react';
-import { Button } from '@mui/material';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import {Link} from 'react-router-dom';
+import {useSelector} from 'react-redux';
 
-import { Header } from '../Header';
+import {Header} from '../Header';
 
 import './Navigation.css';
+import {Button} from "../Button";
 
 export const Navigation = () => {
   const isAuth = useSelector((state) => state.auth.isLoggedIn === true);
@@ -14,16 +14,15 @@ export const Navigation = () => {
     <div className=" navigation__container">
       <div className="navigation">
         {!isAuth &&
-          <Button variant="outlined" className="nav__btn">
-            <Link to="/login" className="nav-login">Sign in</Link>
-          </Button>
+          <Link to="/login" className="nav-login">
+            <Button className="nav__btn" btnText="Sign in"/>
+          </Link>
         }
         {!isAuth &&
-          <Button variant="outlined" className="nav__btn">
-            <Link to="/registration" className="nav-registration">Registration</Link>
-          </Button>
+          <Link to="/registration" className="nav-registration">
+            <Button className="nav__btn" btnText="Registration"/>
+          </Link>
         }
-        { isAuth && <Header /> }
       </div>
     </div>
   );
