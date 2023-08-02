@@ -5,9 +5,7 @@ import { Link } from 'react-router-dom';
 import { getFilmList } from '../../../store/actions/filmsActions';
 
 import { FilmsItem } from '../FilmsItem';
-import { Slider } from '../Slider';
 
-import More from '../../../assets/images/more.svg';
 import './Films.css';
 
 export const Films = () => {
@@ -36,12 +34,6 @@ export const Films = () => {
       <h1 className="film__block__title">Films</h1>
       <div className="film__block">
         <div className="film__block__items">
-          <Slider
-            sliderBtn={More}
-            changeSlide={scrollBack}
-            classForBtn="minus"
-            minNumberOfImg={minNumberImg}
-          />
           {films.slice(minNumberImg, maxNumberImg).map((item) => (
             <Link className="film-link" to={`/films/${item.id}`} key={item.id}>
               <FilmsItem
@@ -54,13 +46,6 @@ export const Films = () => {
               />
             </Link>
           ))}
-          <Slider
-            sliderBtn={More}
-            changeSlide={scrollAhead}
-            classForBtn="plus"
-            maxNumberOfImg={maxNumberImg}
-            numberOfImg={films.length}
-          />
         </div>
       </div>
     </div>

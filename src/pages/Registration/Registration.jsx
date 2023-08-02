@@ -4,23 +4,73 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../store/actions/authActions';
 
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {InputAdornment, InputLabel, Paper} from '@mui/material';
+import logo from '../../assets/images/SITE_LOGO.svg';
 
-const defaultTheme = createTheme();
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import MarkEmailReadOutlinedIcon from '@mui/icons-material/MarkEmailReadOutlined';
+import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
+import {makeStyles} from '@mui/styles';
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    padding:theme.spacing(4),
+    marginTop: theme.spacing(9),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
+  },
+  logo: {
+    margin: '0 auto',
+    width: '100px',
+    height: '100px',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  title: {
+    fontSize: '30px',
+    margin: theme.spacing(3),
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  form: {
+    width: "100%",
+    marginTop: theme.spacing(1)
+  },
+  inputWrapper: {
+    marginTop: theme.spacing(4),
+  },
+  input: {
+    paddingLeft: theme.spacing(3),
+    borderRadius: '20px',
+  },
+  label: {
+    color: theme.palette.primary.main,
+  },
+  inputAdornment: {
+    height: '100%',
+    backgroundColor: theme.palette.secondary.main,
+    padding: theme.spacing(3),
+    borderRadius: '15%',
+  },
+  button: {
+    margin: theme.spacing(3, 0, 2),
+    backgroundColor: "#00b8d4"
+  },
+}));
+
 
 export const Registration = () => {
+  const classes = useStyles();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -42,96 +92,123 @@ export const Registration = () => {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
+    <Container maxWidth="sm">
+      <Paper className={classes.paper} elevation={3}>
         <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign up
-          </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  onChange={(e)=>setFirstName(e.target.value)}
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  onChange={(e)=>setLastName(e.target.value)}
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  onChange={(e)=>setEmail(e.target.value)}
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  onChange={(e)=>setPassword(e.target.value)}
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid>
-            </Grid>
-            <Button
-              type="submit"
+          component="img"
+          alt="Logo"
+          src={logo}
+          className={classes.logo}
+        />
+        <Typography component="h1" variant="h5" className={classes.title}>
+          Register
+        </Typography>
+        <form className={classes.form} onSubmit={handleSubmit} noValidate>
+          <Box className={classes.inputWrapper}>
+            <InputLabel htmlFor="firstName" className={classes.label}>
+              First name
+            </InputLabel>
+            <TextField
+              className={classes.input}
+              required
               fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign Up
-            </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="/login" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
+              id="firstName"
+              name="firstName"
+              autoFocus
+              variant="standard"
+              onChange={e => setFirstName(e.target.value)}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end" className={classes.inputAdornment}>
+                    <AccountCircleOutlinedIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
           </Box>
-        </Box>
-      </Container>
-    </ThemeProvider>
+          <Box className={classes.inputWrapper}>
+            <InputLabel htmlFor="lastName" className={classes.label}>
+              First name
+            </InputLabel>
+            <TextField
+              className={classes.input}
+              required
+              fullWidth
+              id="lastName"
+              name="lastName"
+              autoFocus
+              variant="standard"
+              onChange={e => setLastName(e.target.value)}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end" className={classes.inputAdornment}>
+                    <AccountCircleOutlinedIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Box>
+          <Box className={classes.inputWrapper}>
+            <InputLabel htmlFor="email" className={classes.label}>
+              Email address
+            </InputLabel>
+            <TextField
+              className={classes.input}
+              required
+              fullWidth
+              id="email"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              variant="standard"
+              onChange={e => setEmail(e.target.value)}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end" className={classes.inputAdornment}>
+                    <MarkEmailReadOutlinedIcon/>
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Box>
+          <Box className={classes.inputWrapper}>
+            <InputLabel htmlFor="password" className={classes.label}>
+              Password
+            </InputLabel>
+            <TextField
+              className={classes.input}
+              variant="standard"
+              required
+              fullWidth
+              name="password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              onChange={e => setPassword(e.target.value)}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end" className={classes.inputAdornment}>
+                    <VpnKeyOutlinedIcon/>
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Box>
+          <Button
+            type="submit"
+            fullWidth
+            variant="outlined"
+            sx={{ mt: 5,mb:3 }}
+          >
+            CREATE ACCOUNT
+          </Button>
+          <Link
+            href="/login"
+          >
+            LOGIN NOW
+          </Link>
+        </form>
+      </Paper>
+    </Container>
   );
 };

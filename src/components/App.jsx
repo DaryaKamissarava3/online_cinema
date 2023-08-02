@@ -19,13 +19,33 @@ import {UserTickets} from './UserComponents/UserTickets';
 import {UserAccount} from './UserComponents/UserAccount';
 import {About} from '../pages/About';
 
+import {createTheme} from '@mui/material/styles';
+import {grey, indigo} from "@mui/material/colors";
+import {ThemeProvider} from "@mui/material";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      contrastText: '#ffffff',
+      main:'#3f51b5',
+    },
+    secondary: {
+      light:'#db5858',
+      main: '#d32f2f',
+      dark:'#932020',
+      contrastText: '#fafafa',
+    },
+
+  },
+});
+
 function App() {
   const loggedOut = useSelector((state) => state.auth.isLoggedIn !== true);
   const userRole = useSelector((state) => state.user.user.role);
 
   return (
-    <BrowserRouter>
-      <div className="app">
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
         <Routes>
           {loggedOut ? (
             <>
@@ -53,8 +73,8 @@ function App() {
             </>
           )}
         </Routes>
-      </div>
-    </BrowserRouter>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 

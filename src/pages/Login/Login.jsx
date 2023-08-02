@@ -5,23 +5,88 @@ import {useNavigate} from 'react-router-dom';
 
 import {loginUser} from '../../store/actions/authActions';
 
-import Avatar from '@mui/material/Avatar';
+import { InputAdornment, InputLabel, Paper } from "@mui/material";
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
 
-const defaultTheme = createTheme();
+import MarkEmailReadOutlinedIcon from '@mui/icons-material/MarkEmailReadOutlined';
+import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
+
+import logo from './../../assets/images/SITE_LOGO.svg';
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {"Copyright © "}
+      <Link color="inherit" href="https://material-ui.com/">
+        Your Website
+      </Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    padding:theme.spacing(4),
+    marginTop: theme.spacing(9),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
+  },
+  logo: {
+    margin: '0 auto',
+    width: '100px',
+    height: '100px',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  title: {
+    fontSize: '30px',
+    margin: theme.spacing(4),
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  form: {
+    width: "100%",
+    marginTop: theme.spacing(1)
+  },
+  inputWrapper: {
+    marginTop: theme.spacing(6),
+  },
+  input: {
+    paddingLeft: theme.spacing(3),
+    borderRadius: '20px',
+  },
+  label: {
+    color: theme.palette.primary.main,
+  },
+  inputAdornment: {
+    height: '100%',
+    backgroundColor: theme.palette.secondary.main,
+    padding: theme.spacing(3),
+    borderRadius: '15%',
+  },
+  gridContainer: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(6),
+  },
+}));
 
 export const Login = () => {
+  const classes = useStyles();
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -30,79 +95,100 @@ export const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
     dispatch(loginUser({email, password}));
     navigate('/');
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline/>
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
-            <LockOutlinedIcon/>
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{mt: 1}}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              onChange={e => setEmail(e.target.value)}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              onChange={e => setPassword(e.target.value)}
-            />
+    <Container maxWidth="sm">
+      <Paper className={classes.paper} elevation={3}>
+      <Box
+        component="img"
+        alt="Logo"
+        src={logo}
+        className={classes.logo}
+      />
+      <Typography component="h1" variant="h5" className={classes.title}>
+        Login into your account
+      </Typography>
+      <form className={classes.form} onSubmit={handleSubmit} noValidate>
+        <Box className={classes.inputWrapper}>
+          <InputLabel htmlFor="email" className={classes.label}>
+            Email address
+          </InputLabel>
+          <TextField
+            className={classes.input}
+            required
+            fullWidth
+            id="email"
+            name="email"
+            autoComplete="email"
+            autoFocus
+            variant="standard"
+            onChange={e => setEmail(e.target.value)}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end" className={classes.inputAdornment}>
+                  <MarkEmailReadOutlinedIcon/>
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Box>
+        <Box className={classes.inputWrapper}>
+          <InputLabel htmlFor="password" className={classes.label}>
+            Password
+          </InputLabel>
+          <TextField
+            className={classes.input}
+            variant="standard"
+            required
+            fullWidth
+            name="password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            onChange={e => setPassword(e.target.value)}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end" className={classes.inputAdornment}>
+                  <VpnKeyOutlinedIcon/>
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Box>
+        <Grid container className={classes.gridContainer} spacing={2}>
+          <Grid item xs={6}>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary"/>}
               label="Remember me"
             />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{mt: 3, mb: 2}}
-            >
-              Sign In
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="/registration" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
-          </Box>
-        </Box>
-      </Container>
-    </ThemeProvider>
+          </Grid>
+          <Grid item xs={6} container justifyContent="flex-end" alignItems="center">
+            <Link href="#" variant="body2">
+              Forgot password?
+            </Link>
+          </Grid>
+        </Grid>
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{ mb:3 }}
+        >
+          LOGIN NOW
+        </Button>
+        <Link
+          href="/registration"
+        >
+          SIGN UP NOW
+        </Link>
+      </form>
+      </Paper>
+      <Box mt={8}>
+        <Copyright />
+      </Box>
+    </Container>
   );
 };
