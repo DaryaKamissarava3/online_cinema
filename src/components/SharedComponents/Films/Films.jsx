@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import {getFilmList} from '../../../store/actions/filmsActions';
+import { getFilmList } from '../../../store/actions/filmsActions';
 
-import {FilmsItem} from '../FilmsItem';
+import { FilmsItem } from '../FilmsItem';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 
 import './Films.css';
-import {makeStyles} from '@mui/styles';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -48,8 +48,9 @@ export const Films = () => {
         gutterBottom
         variant="h4"
         component="h4"
-        align="center"
+        align="left"
         mb={3}
+        ml={10}
       >
         Films
       </Typography>
