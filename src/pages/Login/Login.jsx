@@ -37,22 +37,22 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    padding:theme.spacing(4),
-    marginTop: theme.spacing(9),
+    padding:theme.spacing(3),
+    marginTop: theme.spacing(5),
     display: "flex",
     flexDirection: "column",
     alignItems: "center"
   },
   logo: {
     margin: '0 auto',
-    width: '100px',
-    height: '100px',
+    width: '70px',
+    height: '70px',
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
   },
   title: {
-    fontSize: '30px',
+    fontSize: '20px',
     margin: theme.spacing(4),
     display: "flex",
     alignItems: "center",
@@ -100,7 +100,7 @@ export const Login = () => {
   };
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="xs">
       <Paper className={classes.paper} elevation={3}>
       <Box
         component="img"
@@ -108,7 +108,7 @@ export const Login = () => {
         src={logo}
         className={classes.logo}
       />
-      <Typography component="h1" variant="h5" className={classes.title}>
+      <Typography component="h1"  className={classes.title}>
         Login into your account
       </Typography>
       <form className={classes.form} onSubmit={handleSubmit} noValidate>
@@ -161,7 +161,7 @@ export const Login = () => {
         <Grid container className={classes.gridContainer} spacing={2}>
           <Grid item xs={6}>
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary"/>}
+              control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
           </Grid>
@@ -186,7 +186,7 @@ export const Login = () => {
         </Link>
       </form>
       </Paper>
-      <Box mt={8}>
+      <Box mt={4}>
         <Copyright />
       </Box>
     </Container>

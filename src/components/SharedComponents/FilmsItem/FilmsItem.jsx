@@ -1,6 +1,9 @@
 import React from 'react';
 
 import './FilmsItem.css';
+import {Card, CardActions, CardContent, CardMedia} from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
 export const FilmsItem = ({
   title,
@@ -9,20 +12,27 @@ export const FilmsItem = ({
   startDate,
   endDate,
   }) => {
+  const formattedStartDate = new Date(startDate).toLocaleDateString();
+  const formattedEndDate = new Date(endDate).toLocaleDateString();
+
   return (
-    <div className="film__item">
-      <img src={imgUrl} className="film__item__img" alt="Film Image" />
-      <p className="film__item__title">
-        {title}</p>
-      <p className="film__item__field">
-        Price : {price} $
-      </p>
-      <p className="film__item__field">
-        start Date : {startDate}
-      </p>
-      <p className="film__item__field">
-        end Date : {endDate}
-      </p>
-    </div>
+    <Card sx={{ maxWidth: 280,margin:'20px 20px' }}>
+      <CardMedia
+        sx={{ height: 380 ,width:260 }}
+        image={imgUrl}
+        title="film image"
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h6" component="div">
+          {title}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Price: {price}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+         Dates: {formattedStartDate}-{formattedEndDate}
+        </Typography>
+      </CardContent>
+    </Card>
   );
 };

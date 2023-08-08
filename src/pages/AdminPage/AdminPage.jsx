@@ -11,10 +11,6 @@ export const AdminPage = () => {
 
   return (
     <>
-      <Header
-        updateClassStatus={setClassNameOfSearch}
-        updateDataSearch={setResultOfSearch}
-      />
       <SearchFilmResult
         isActiveBlock={isClassNameOfSearch}
         foundResultsOfSearch={resultOfSearch}

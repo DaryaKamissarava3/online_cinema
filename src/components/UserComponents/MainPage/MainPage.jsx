@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Footer } from '../../SharedComponents/Footer';
 import { Films } from '../../SharedComponents/Films';
 import { UserMenu } from '../UserMenu';
-import { Header } from '../../SharedComponents/Header';
 import { SearchFilmResult } from '../../SharedComponents/SearchFilmResult';
+import { MovieSlider } from '../../SharedComponents/MovieSlider';
+
 
 export const MainPage = () => {
   const [resultOfSearch, setResultOfSearch] = useState([]);
@@ -11,14 +12,11 @@ export const MainPage = () => {
 
   return (
     <>
-      <Header
-        updateClassStatus={setClassNameOfSearch}
-        updateDataSearch={setResultOfSearch}
-      />
       <SearchFilmResult
         isActiveBlock={isClassNameOfSearch}
         foundResultsOfSearch={resultOfSearch}
       />
+      <MovieSlider />
       <UserMenu/>
       <Films/>
       <Footer/>

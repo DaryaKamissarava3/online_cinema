@@ -19,15 +19,17 @@ import {UserTickets} from './UserComponents/UserTickets';
 import {UserAccount} from './UserComponents/UserAccount';
 import {About} from '../pages/About';
 
+
 import {createTheme} from '@mui/material/styles';
-import {grey, indigo} from "@mui/material/colors";
 import {ThemeProvider} from "@mui/material";
+import {NavBar} from "./SharedComponents/NavBar";
 
 const theme = createTheme({
   palette: {
     primary: {
       contrastText: '#ffffff',
       main:'#3f51b5',
+      dark:'#2c387e',
     },
     secondary: {
       light:'#db5858',
@@ -46,6 +48,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
+        <NavBar/>
         <Routes>
           {loggedOut ? (
             <>
