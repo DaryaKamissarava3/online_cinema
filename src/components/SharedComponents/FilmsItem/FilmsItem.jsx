@@ -19,16 +19,16 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     width: '40px',
     height: '40px',
-    backgroundColor: 'black',
+    backgroundColor: theme.palette.primary.dark,
     color: 'white',
     borderRadius: '50%',
     zIndex: '3'
   },
   ageLimit: {
-    padding:'1px',
+    padding:'3px',
     width: '30px',
     borderRadius: '20%',
-    backgroundColor: 'grey',
+    backgroundColor: theme.palette.primary.light,
     color: theme.palette.primary.contrastText,
   }
 }));

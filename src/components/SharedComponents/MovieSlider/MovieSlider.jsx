@@ -8,7 +8,6 @@ import MovieItem from './MovieItem';
 
 import imagesData from './../../../assets/arrays/carousel.json';
 
-
 const useStyles = makeStyles((theme) => ({
   carouselContainer: {
     maxWidth: '100%',

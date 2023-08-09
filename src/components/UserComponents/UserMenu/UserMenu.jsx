@@ -1,28 +1,45 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-import './UserMenu.css';
+import Box from '@mui/material/Box';
+import {Breadcrumbs} from '@mui/material';
+import Link from '@mui/material/Link';
+
+import {makeStyles} from '@mui/styles';
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    margin:theme.spacing(5),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  breadcrumbs: {
+    width: '50%',
+    backgroundColor: theme.palette.primary.main,
+    display: 'flex',
+    justifyContent: 'center',
+    padding: theme.spacing(3),
+    borderRadius:'20px',
+  },
+}));
 
 export const UserMenu = () => {
+  const classes=useStyles();
+
   return (
-    <div className="user__menu__container">
-      <div className="user__menu__item__block">
-        <div className="user__menu__item">
-          <Link to="/tickets" className="menu__item__link">
-            My tickets
-          </Link>
-        </div>
-        <div className="user__menu__item">
-          <Link to="/profile" className="menu__item__link">
-            Profile
-          </Link>
-        </div>
-        <div className="user__menu__item">
-          <Link to="/about" className="menu__item__link">
-            About cinema
-          </Link>
-        </div>
-      </div>
-    </div>
+    <Box className={classes.container}>
+      <Breadcrumbs  className={classes.breadcrumbs}>
+        <Link underline="hover" href="/tickets" sx={{color:'white'}} >
+          My tickets
+        </Link>
+        <Link underline="hover" href="/account" sx={{color:'white'}} >
+          Account
+        </Link>
+        <Link underline="hover" href="/about" sx={{color:'white'}} >
+          About cinema
+        </Link>
+      </Breadcrumbs>
+    </Box>
   );
 };

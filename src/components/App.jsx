@@ -69,7 +69,7 @@ function App() {
             <>
               <Route path="/" element={<MainPage/>}/>
               <Route path="/tickets" element={<UserTickets/>}/>
-              <Route path="/profile" element={<UserAccount/>}/>
+              <Route path="/account" element={<UserAccount/>}/>
               <Route path="/about" element={<About/>}/>
               <Route path="films/:id" element={<FilmDetails/>}/>
               <Route path="*" element={<Navigate to="/" replace={true}/>}/>

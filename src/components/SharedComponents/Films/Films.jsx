@@ -50,7 +50,8 @@ export const Films = () => {
         component="h4"
         align="left"
         mb={3}
-        ml={10}
+        ml={18}
+        sx={{color:'#2c387e'}}
       >
         Films
       </Typography>
