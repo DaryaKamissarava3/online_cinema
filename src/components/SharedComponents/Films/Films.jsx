@@ -8,6 +8,7 @@ import { FilmsItem } from '../FilmsItem';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 
@@ -16,10 +17,10 @@ import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    minWidth: '1500px',
+    minWidth: '1300px',
   },
   btnContainer: {
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(4),
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -51,20 +52,13 @@ export const Films = () => {
         align="left"
         mb={3}
         ml={18}
-        sx={{color:'#2c387e'}}
+        sx={{color: '#2c387e'}}
       >
         Films
       </Typography>
-      <div className="container">
-        <Box>
-          <Box sx={{
-            display: 'flex',
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            position: 'relative',
-            justifyContent: 'center'
-          }}>
-            {films.slice(arrowMin, arrowMax).map((item) => (
+        <Grid container spacing={5}>
+          {films.slice(arrowMin, arrowMax).map((item) => (
+            <Grid item xs={12} sm={8} md={5} lg={3} >
               <Link href={`/films/${item.id}`} key={item.id} sx={{textDecoration: 'none', color: 'black'}}>
                 <FilmsItem
                   key={item.id}
@@ -75,9 +69,9 @@ export const Films = () => {
                   endDate={item.endDate}
                 />
               </Link>
-            ))}
-          </Box>
-        </Box>
+            </Grid>
+          ))}
+        </Grid>
         {(arrowMax < films.length) && (
           <Box className={classes.btnContainer}>
             <Button
@@ -88,7 +82,6 @@ export const Films = () => {
             </Button>
           </Box>
         )}
-      </div>
     </Container>
   );
 };

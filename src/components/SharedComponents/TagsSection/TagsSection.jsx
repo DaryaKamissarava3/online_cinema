@@ -18,13 +18,12 @@ const tags = ['action', 'autobiography', 'adventure',
 
 const useStyles = makeStyles((theme) => ({
   innerContainer: {
-    padding: theme.spacing(3),
+    padding: theme.spacing(4),
     maxWidth: '1000px',
     margin: '0 auto',
     backgroundColor: theme.palette.primary.light,
   },
   tag: {
-    padding: theme.spacing(1),
     border: '1px solid #ccc',
     borderRadius: theme.shape.borderRadius,
     textAlign: 'center',

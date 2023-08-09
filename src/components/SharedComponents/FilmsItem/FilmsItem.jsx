@@ -43,19 +43,19 @@ export const FilmsItem = ({title, price, imgUrl, startDate, endDate,}) => {
   const age = 12;
 
   return (
-    <Card sx={{maxWidth: 280, margin: '20px 20px', position: 'relative', overflow: 'visible'}}>
+    <Card sx={{maxWidth: 220, position: 'relative', overflow: 'visible'}}>
       <Box className={classes.ratingContainer}>
         <Typography variant="body2">
           {rating}
         </Typography>
       </Box>
       <CardMedia
-        sx={{height: 380, width: 260}}
+        sx={{height: 300, width: 220}}
         image={imgUrl}
         title="film image"
       />
       <CardContent>
-        <Typography gutterBottom variant="h6" component="div">
+        <Typography gutterBottom  component="div" sx={{fontSize :'15px'}}>
           {title}
         </Typography>
         <Typography gutterBottom variant="body2" color="text.secondary">
