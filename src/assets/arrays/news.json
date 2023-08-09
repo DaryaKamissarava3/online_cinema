@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "image": "https://avatars.mds.yandex.net/i?id=045f1c799e840d65a309a6052efaa32a_l-4011528-images-thumbs&n=13",
+    "date": "25.03.22",
+    "description": "An event titled \"April battles and victory\" dedicated to the Armed Forces Day was held at the Nizami Cinema Center"
+  },
+  {
+    "id": 2,
+    "image": "https://i.pinimg.com/originals/15/d9/d8/15d9d80271103cca9e1ebcba53049c33.jpg",
+    "date": "27.04.22",
+    "description": "\"Khazri\" dance group at Nizami Cinema Center"
+  },
+  {
+    "id": 3,
+    "image": "https://wikiway.com/upload/hl-photo/05b/heydar_aliyev_center_102.jpg",
+    "date": "05.06.22",
+    "description": "The conference \"Azerbaijani cinema\" was held at the Nizami Cinema Center."
+  },
+  {
+    "id": 4,
+    "image": "https://pbs.twimg.com/media/Fjue5AOXwAANokW?format=jpg&name=medium",
+    "date": "01.02.22",
+    "description": "The conference \"Heydar Aliyev and Azerbaijani cinema\" was held at the Nizami Cinema Center"
+  }
+]

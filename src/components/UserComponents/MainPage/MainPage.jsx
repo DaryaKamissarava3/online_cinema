@@ -5,6 +5,7 @@ import { UserMenu } from '../UserMenu';
 import { SearchFilmResult } from '../../SharedComponents/SearchFilmResult';
 import { MovieSlider } from '../../SharedComponents/MovieSlider';
 import { TagsSection } from '../../SharedComponents/TagsSection';
+import { NewsSection } from '../../SharedComponents/NewsSection';
 
 
 export const MainPage = () => {
@@ -21,6 +22,7 @@ export const MainPage = () => {
       <UserMenu />
       <Films />
       <TagsSection />
+      <NewsSection />
       <Footer />
     </>
   )
