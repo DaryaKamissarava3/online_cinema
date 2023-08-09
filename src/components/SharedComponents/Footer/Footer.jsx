@@ -3,6 +3,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
+import Container from '@mui/material/Container';
 
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -31,7 +32,7 @@ const footerCustomer = ['Help & contact us', 'Return', 'Online stores', 'Terms &
 export const Footer = () => {
   const classes = useStyles();
   return (
-    <>
+    <Container>
       <Box ml={18} mt={12} mb={4}>
         <Grid container spacing={2} justifyContent="center">
           {footerTitles.map((title, index) => (
@@ -58,6 +59,6 @@ export const Footer = () => {
       <Box className={classes.copyright} mb={8}>
         &copy; 2023 Your Company Name. All rights reserved.
       </Box>
-    </>
+    </Container>
   );
 };
