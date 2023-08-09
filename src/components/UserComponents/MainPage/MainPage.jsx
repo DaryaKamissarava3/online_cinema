@@ -4,6 +4,7 @@ import { Films } from '../../SharedComponents/Films';
 import { UserMenu } from '../UserMenu';
 import { SearchFilmResult } from '../../SharedComponents/SearchFilmResult';
 import { MovieSlider } from '../../SharedComponents/MovieSlider';
+import { TagsSection } from '../../SharedComponents/TagsSection';
 
 
 export const MainPage = () => {
@@ -17,9 +18,10 @@ export const MainPage = () => {
         foundResultsOfSearch={resultOfSearch}
       />
       <MovieSlider />
-      <UserMenu/>
-      <Films/>
-      <Footer/>
+      <UserMenu />
+      <Films />
+      <TagsSection />
+      <Footer />
     </>
   )
 };
