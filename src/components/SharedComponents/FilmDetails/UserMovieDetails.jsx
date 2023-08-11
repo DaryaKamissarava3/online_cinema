@@ -89,7 +89,7 @@ const UserMovieDetails = ({filmInformation, params}) => {
           className={classes.img}
         />
       </Grid>
-      <Grid item lg={9}>
+      <Grid item lg={8} mr={2}>
         <Grid container ml={5} direction='column'>
           <Grid item lg={3}>
             <Typography variant='h5' color='primary' mb={2} sx={{textDecoration: 'underline'}}>

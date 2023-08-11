@@ -37,7 +37,7 @@ export const FilmDetails = () => {
 
   return (
     <Container>
-      <Box mt={10}>
+      <Box mt={10} sx={{  boxShadow:'2px 2px 4px 4px rgba(0,0,255,0.4)',}}>
         <Paper className={classes.root}>
           {userRole === 'admin' && (
             <AdminMovieDetails
