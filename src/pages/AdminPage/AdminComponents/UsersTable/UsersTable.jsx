@@ -61,6 +61,19 @@ export const UsersTable = () => {
               handleDeleteUser(params.id);
             }
           }}
+          sx={{
+            '& .MuiDataGrid-root': {
+              border: '1px solid #ccc',
+            },
+            '& .MuiDataGrid-cell': {
+              padding: '8px',
+            },
+            '& .MuiDataGrid-row': {
+              '&:nth-of-type(odd)': {
+                backgroundColor: '#f5f5f5',
+              },
+            },
+          }}
         />
       </Box>
     </Box>

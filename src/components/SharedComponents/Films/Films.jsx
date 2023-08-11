@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 
-import { getFilmList } from '../../../store/actions/filmsActions';
+import {getFilmList} from '../../../store/actions/filmsActions';
 
-import { FilmsItem } from '../FilmsItem';
+import {FilmsItem} from '../FilmsItem';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -45,20 +45,21 @@ export const Films = () => {
 
   return (
     <Container className={classes.container}>
-      <Typography
-        gutterBottom
-        variant="h4"
-        component="h4"
-        align="left"
-        mb={3}
-        ml={18}
-        sx={{color: '#2c387e'}}
-      >
-        Films
-      </Typography>
+      <Box mt={5} mb={5}>
+        <Typography
+          gutterBottom
+          variant="h4"
+          component="h4"
+          align="left"
+          mb={3}
+          ml={18}
+          sx={{color: '#2c387e'}}
+        >
+          Films
+        </Typography>
         <Grid container spacing={5}>
           {films.slice(arrowMin, arrowMax).map((item) => (
-            <Grid item xs={12} sm={8} md={5} lg={3} >
+            <Grid item xs={12} sm={8} md={5} lg={3}>
               <Link href={`/films/${item.id}`} key={item.id} sx={{textDecoration: 'none', color: 'black'}}>
                 <FilmsItem
                   key={item.id}
@@ -82,6 +83,7 @@ export const Films = () => {
             </Button>
           </Box>
         )}
+      </Box>
     </Container>
   );
 };
