@@ -5,24 +5,23 @@ import {
   Route,
   Routes,
 } from 'react-router-dom';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import {AdminPage} from '../pages/AdminPage';
-import {Login} from '../pages/Login';
-import {Registration} from '../pages/Registration';
-import {MainPage} from './UserComponents/MainPage';
-import {AddFilms} from '../pages/AdminPage/AdminComponents/AddFilms';
-import {ViewUsers} from '../pages/AdminPage/AdminComponents/ViewUsers';
-import {Films} from './SharedComponents/Films';
-import {FilmDetails} from './SharedComponents/FilmDetails';
-import {UserTickets} from './UserComponents/UserTickets';
-import {UserAccount} from './UserComponents/UserAccount';
-import {About} from '../pages/About';
+import { AdminPage } from '../pages/AdminPage';
+import { Login } from '../pages/Login';
+import { Registration } from '../pages/Registration';
+import { MainPage } from './UserComponents/MainPage';
+import { AddFilms } from '../pages/AdminPage/AdminComponents/AddFilms';
+import { Films } from './SharedComponents/Films';
+import { FilmDetails } from './SharedComponents/FilmDetails';
+import { UserTickets } from './UserComponents/UserTickets';
+import { UserAccount } from './UserComponents/UserAccount';
+import { About } from '../pages/About';
+import { NavBar } from './SharedComponents/NavBar';
+import { UsersTable } from '../pages/AdminPage/AdminComponents/UsersTable';
 
-
-import {createTheme} from '@mui/material/styles';
-import {ThemeProvider} from "@mui/material";
-import {NavBar} from "./SharedComponents/NavBar";
+import { createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material';
 
 const theme = createTheme({
   palette: {
@@ -61,7 +60,7 @@ function App() {
               <Route path="*" element={<Navigate to="/admin" replace={true}/>}/>
               <Route path="/admin" element={<AdminPage/>}/>
               <Route path="/admin/add-films" element={<AddFilms/>}/>
-              <Route path="/admin/view-users" element={<ViewUsers/>}/>
+              <Route path="/admin/view-users" element={<UsersTable />}/>
               <Route path="/admin/films" element={<Films/>}/>
               <Route path="films/:id" element={<FilmDetails/>}/>
             </>

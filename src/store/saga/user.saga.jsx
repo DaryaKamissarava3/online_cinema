@@ -1,4 +1,4 @@
-import {call, put, takeEvery} from 'redux-saga/effects';
+import { call, put, takeEvery } from 'redux-saga/effects';
 import {
   collection,
   getDocs,
@@ -8,7 +8,7 @@ import {
   doc,
   deleteDoc,
 } from 'firebase/firestore';
-import {db} from '../../firebase.config';
+import { db } from '../../firebase.config';
 
 import {
   deleteUserFailure,
@@ -18,8 +18,8 @@ import {
   requestDeleteAccountFailure,
   requestDeleteAccountSuccess, updateUserFailure, updateUserSuccess,
 } from '../actions/userActions';
-import {DELETE_USER, GET_USERS_LIST, REQUEST_DELETE_ACCOUNT, UPDATE_USER} from '../actions/actionTypes';
-import {deleteTicketsSuccess} from '../actions/ticketActions';
+import { DELETE_USER, GET_USERS_LIST, REQUEST_DELETE_ACCOUNT, UPDATE_USER } from '../actions/actionTypes';
+import { deleteTicketsSuccess } from '../actions/ticketActions';
 
 function* getUserListSaga() {
   try {
@@ -55,13 +55,17 @@ function* makeRequestToDeleteAccount(action) {
 
 function* deleteUserSaga(action) {
   try {
-    const userId = action.payload;
 
+    const userId = action.payload;
+    console.log('id from saga ',userId)
     yield call(deleteDoc, doc(db, 'users', userId));
 
     const usersCollection = collection(db, 'users');
     const usersQuerySnapshot = yield call(getDocs, usersCollection);
-    const userList = usersQuerySnapshot.docs.map((document) => document.data()).filter((user) => user.role === 'user');
+    const userList = usersQuerySnapshot.docs.map((document) => ({
+      id: document.id,
+      ...document.data(),
+    })).filter((user) => user.role === 'user');
 
     const ticketsCollection = collection(db, 'tickets');
     const ticketsQuerySnapshot = yield call(getDocs, ticketsCollection);
@@ -71,8 +75,8 @@ function* deleteUserSaga(action) {
       yield call(deleteDoc, doc(db, 'tickets', ticketDoc.id));
     }
 
-    yield put(getUsersListSuccess(userList));
     yield put(deleteUserSuccess());
+    yield put(getUsersListSuccess(userList));
     yield put(deleteTicketsSuccess());
     window.alert('User deleted!!!!');
   } catch (error) {

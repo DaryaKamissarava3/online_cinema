@@ -30,7 +30,7 @@ const initialState = {
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER:
-      const { id, firstName, lastName, email, role } = action.payload;
+      const {id, firstName, lastName, email, role} = action.payload;
       return {
         ...state,
         user: {
@@ -71,30 +71,21 @@ export const userReducer = (state = initialState, action) => {
         error: action.payload,
       };
     case DELETE_USER:
+      const updatedUsers = state.users.filter(user => user.id !== action.payload.userId);
+
       return {
         ...state,
-        user: {
-          ...state.user,
-          deleteUser: false,
-        },
+        users: updatedUsers,
         error: null,
       };
     case DELETE_USER_SUCCESS:
       return {
         ...state,
-        user: {
-          ...state.user,
-          deleteUser: true,
-        },
         error: null,
       };
     case DELETE_USER_FAILURE:
       return {
         ...state,
-        user: {
-          ...state.user,
-          deleteUser: false,
-        },
         error: action.payload,
       };
     case GET_USERS_LIST:

@@ -49,7 +49,7 @@ export const AdminNavigation = () => {
             </Link>
           </Grid>
           <Grid item lg={4}>
-            <Link to={"/admin/view-users"} sx={{textDecoration: 'none'}}>
+            <Link href={"/admin/view-users"} sx={{textDecoration: 'none'}}>
               <Card>
                 <CardMedia
                   sx={{height:200}}
@@ -68,7 +68,7 @@ export const AdminNavigation = () => {
             </Link>
           </Grid>
           <Grid item lg={4}>
-            <Link to={"/admin/films"} sx={{textDecoration: 'none'}}>
+            <Link href={"/admin/films"} sx={{textDecoration: 'none'}}>
               <Card>
                 <CardMedia
                   sx={{height:200}}
