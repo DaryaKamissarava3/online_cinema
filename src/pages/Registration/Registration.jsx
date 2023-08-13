@@ -4,39 +4,43 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../store/actions/authActions';
 
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import {InputAdornment, InputLabel, Paper} from '@mui/material';
+import InputAdornment from '@mui/material/InputAdornment';
+import InputLabel from '@mui/material/InputLabel';
+import Link from '@mui/material/Link';
+import Paper from '@mui/material/Paper';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+
 import logo from '../../assets/images/SITE_LOGO.svg';
 
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import MarkEmailReadOutlinedIcon from '@mui/icons-material/MarkEmailReadOutlined';
 import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
-import {makeStyles} from '@mui/styles';
+
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    padding:theme.spacing(4),
-    marginTop: theme.spacing(9),
+    padding:theme.spacing(3),
+    marginTop: theme.spacing(6),
     display: "flex",
     flexDirection: "column",
     alignItems: "center"
   },
   logo: {
     margin: '0 auto',
-    width: '100px',
-    height: '100px',
+    width: '70px',
+    height: '70px',
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
   },
   title: {
-    fontSize: '30px',
-    margin: theme.spacing(3),
+    fontSize: '18px',
+    margin: theme.spacing(2),
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -46,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1)
   },
   inputWrapper: {
-    marginTop: theme.spacing(4),
+    marginTop: theme.spacing(1),
   },
   input: {
     paddingLeft: theme.spacing(3),
@@ -56,9 +60,9 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.main,
   },
   inputAdornment: {
-    height: '100%',
+    height: '80%',
     backgroundColor: theme.palette.secondary.main,
-    padding: theme.spacing(3),
+    padding: theme.spacing(2),
     borderRadius: '15%',
   },
   button: {
@@ -66,7 +70,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#00b8d4"
   },
 }));
-
 
 export const Registration = () => {
   const classes = useStyles();
@@ -92,7 +95,7 @@ export const Registration = () => {
   };
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="xs">
       <Paper className={classes.paper} elevation={3}>
         <Box
           component="img"
@@ -204,6 +207,7 @@ export const Registration = () => {
           </Button>
           <Link
             href="/login"
+            sx={{fontSize:'12px'}}
           >
             LOGIN NOW
           </Link>

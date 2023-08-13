@@ -1,20 +1,24 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
-import {useDispatch} from 'react-redux';
-import {useNavigate} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-import {loginUser} from '../../store/actions/authActions';
+import { loginUser } from '../../store/actions/authActions';
 
-import { InputAdornment, InputLabel, Paper } from "@mui/material";
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
+
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Grid from '@mui/material/Grid';
+import InputAdornment from '@mui/material/InputAdornment';
+import InputLabel from '@mui/material/InputLabel';
+import TextField from '@mui/material/TextField';
+import Link from '@mui/material/Link';
+import Paper  from "@mui/material/Paper";
+import Typography from '@mui/material/Typography';
+
 import { makeStyles } from '@mui/styles';
 
 import MarkEmailReadOutlinedIcon from '@mui/icons-material/MarkEmailReadOutlined';
@@ -37,7 +41,7 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    padding:theme.spacing(3),
+    padding: theme.spacing(3),
     marginTop: theme.spacing(5),
     display: "flex",
     flexDirection: "column",
@@ -63,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1)
   },
   inputWrapper: {
-    marginTop: theme.spacing(6),
+    marginTop: theme.spacing(4),
   },
   input: {
     paddingLeft: theme.spacing(3),
@@ -75,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
   inputAdornment: {
     height: '100%',
     backgroundColor: theme.palette.secondary.main,
-    padding: theme.spacing(3),
+    padding: theme.spacing(2),
     borderRadius: '15%',
   },
   gridContainer: {
@@ -101,93 +105,96 @@ export const Login = () => {
 
   return (
     <Container maxWidth="xs">
-      <Paper className={classes.paper} elevation={3}>
-      <Box
-        component="img"
-        alt="Logo"
-        src={logo}
-        className={classes.logo}
-      />
-      <Typography component="h1"  className={classes.title}>
-        Login into your account
-      </Typography>
-      <form className={classes.form} onSubmit={handleSubmit} noValidate>
-        <Box className={classes.inputWrapper}>
-          <InputLabel htmlFor="email" className={classes.label}>
-            Email address
-          </InputLabel>
-          <TextField
-            className={classes.input}
-            required
-            fullWidth
-            id="email"
-            name="email"
-            autoComplete="email"
-            autoFocus
-            variant="standard"
-            onChange={e => setEmail(e.target.value)}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end" className={classes.inputAdornment}>
-                  <MarkEmailReadOutlinedIcon/>
-                </InputAdornment>
-              ),
-            }}
+      <Box mb={3}>
+        <Paper className={classes.paper} elevation={3}>
+          <Box
+            component="img"
+            alt="Logo"
+            src={logo}
+            className={classes.logo}
           />
-        </Box>
-        <Box className={classes.inputWrapper}>
-          <InputLabel htmlFor="password" className={classes.label}>
-            Password
-          </InputLabel>
-          <TextField
-            className={classes.input}
-            variant="standard"
-            required
-            fullWidth
-            name="password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            onChange={e => setPassword(e.target.value)}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end" className={classes.inputAdornment}>
-                  <VpnKeyOutlinedIcon/>
-                </InputAdornment>
-              ),
-            }}
-          />
-        </Box>
-        <Grid container className={classes.gridContainer} spacing={2}>
-          <Grid item xs={6}>
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-          </Grid>
-          <Grid item xs={6} container justifyContent="flex-end" alignItems="center">
-            <Link href="#" variant="body2">
-              Forgot password?
+          <Typography component="h1" className={classes.title}>
+            Login into your account
+          </Typography>
+          <form className={classes.form} onSubmit={handleSubmit} noValidate>
+            <Box className={classes.inputWrapper}>
+              <InputLabel htmlFor="email" className={classes.label}>
+                Email address
+              </InputLabel>
+              <TextField
+                className={classes.input}
+                required
+                fullWidth
+                id="email"
+                name="email"
+                autoComplete="email"
+                autoFocus
+                variant="standard"
+                onChange={e => setEmail(e.target.value)}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end" className={classes.inputAdornment}>
+                      <MarkEmailReadOutlinedIcon/>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Box>
+            <Box className={classes.inputWrapper}>
+              <InputLabel htmlFor="password" className={classes.label}>
+                Password
+              </InputLabel>
+              <TextField
+                className={classes.input}
+                variant="standard"
+                required
+                fullWidth
+                name="password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                onChange={e => setPassword(e.target.value)}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end" className={classes.inputAdornment}>
+                      <VpnKeyOutlinedIcon/>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Box>
+            <Grid container className={classes.gridContainer} spacing={2}>
+              <Grid item xs={6}>
+                <FormControlLabel
+                  control={<Checkbox value="remember" color="primary"/>}
+                  label="Remember me"
+                />
+              </Grid>
+              <Grid item xs={6} container justifyContent="flex-end" alignItems="center">
+                <Link href="#" variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid>
+            </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{mb: 3}}
+            >
+              LOGIN NOW
+            </Button>
+            <Link
+              href="/registration"
+              sx={{fontSize:'12px'}}
+            >
+              SIGN UP NOW
             </Link>
-          </Grid>
-        </Grid>
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          sx={{ mb:3 }}
-        >
-          LOGIN NOW
-        </Button>
-        <Link
-          href="/registration"
-        >
-          SIGN UP NOW
-        </Link>
-      </form>
-      </Paper>
-      <Box mt={4}>
-        <Copyright />
+          </form>
+        </Paper>
+        <Box mt={4}>
+          <Copyright/>
+        </Box>
       </Box>
     </Container>
   );

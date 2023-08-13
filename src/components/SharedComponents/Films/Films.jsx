@@ -59,7 +59,7 @@ export const Films = () => {
         </Typography>
         <Grid container spacing={5}>
           {films.slice(arrowMin, arrowMax).map((item) => (
-            <Grid item xs={12} sm={8} md={5} lg={3}>
+            <Grid item xs={12} sm={8} md={5} lg={3} key={item.id}>
               <Link href={`/films/${item.id}`} key={item.id} sx={{textDecoration: 'none', color: 'black'}}>
                 <FilmsItem
                   key={item.id}
