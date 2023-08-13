@@ -6,6 +6,7 @@ import { SearchFilmResult } from '../../SharedComponents/SearchFilmResult';
 import { MovieSlider } from '../../SharedComponents/MovieSlider';
 import { TagsSection } from '../../SharedComponents/TagsSection';
 import { NewsSection } from '../../SharedComponents/NewsSection';
+import { ModalForSearch} from '../../SharedComponents/ModalForSearch';
 
 
 export const MainPage = () => {
@@ -14,12 +15,16 @@ export const MainPage = () => {
 
   return (
     <>
+      <MovieSlider />
+      <UserMenu />
+      <ModalForSearch
+        updateClassStatus={setClassNameOfSearch}
+        updateDataSearch={setResultOfSearch}
+      />
       <SearchFilmResult
         isActiveBlock={isClassNameOfSearch}
         foundResultsOfSearch={resultOfSearch}
       />
-      <MovieSlider />
-      <UserMenu />
       <Films />
       <TagsSection />
       <NewsSection />

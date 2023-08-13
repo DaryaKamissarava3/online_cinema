@@ -1,27 +1,54 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { FilmsItem } from '../FilmsItem';
 
-import './SearchFilmResult.css';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
 
-export const SearchFilmResult = ({ isActiveBlock,foundResultsOfSearch }) => {
+import { makeStyles } from '@mui/styles';
+
+const useStyles = makeStyles((theme) => ({
+  moviesList: {
+    margin: theme.spacing(6),
+  },
+  hide: {
+    display: 'none',
+  },
+  title: {
+    display: 'flex',
+    justifyContent: 'center',
+    color: theme.palette.primary.main,
+  },
+  btnContainer: {
+    marginTop: theme.spacing(4),
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+}));
+
+export const SearchFilmResult = ({isActiveBlock, foundResultsOfSearch}) => {
+  const classes = useStyles();
+
   const [arrowMin] = useState(0);
-  const [arrowMax, setArrowMax] = useState(8);
+  const [arrowMax, setArrowMax] = useState(4);
 
   const arrowMore = () => {
     setArrowMax(arrowMax + 8);
   };
 
   return (
-    <section className={isActiveBlock ? 'section products-list' : 'hide'}>
+    <Box className={isActiveBlock ? classes.moviesList : classes.hide} mb={10}>
       <div className="container">
-        <div className="section-header">
-          <h2 className="section-subtitle underline">Search results</h2>
-        </div>
-        <div className="film__block__items">
-          {foundResultsOfSearch.slice(arrowMin, arrowMax).map((item) =>
-            (
-              <Link className="film-link" to={`/films/${item.id}`} key={item.id}>
+        <Box mb={5}>
+          <Typography variant='h4' className={classes.title}>Search results</Typography>
+        </Box>
+        <Grid container spacing={5} ml={1}>
+          {foundResultsOfSearch.slice(arrowMin, arrowMax).map((item) => (
+            <Grid item xs={12} sm={8} md={5} lg={3} key={item.id}>
+              <Link href={`/films/${item.id}`} key={item.id} sx={{textDecoration: 'none', color: 'black'}}>
                 <FilmsItem
                   title={item.title}
                   price={item.price}
@@ -31,12 +58,20 @@ export const SearchFilmResult = ({ isActiveBlock,foundResultsOfSearch }) => {
                   key={item.id}
                 />
               </Link>
-            ))}
-        </div>
-        {!(arrowMax >= foundResultsOfSearch.length || foundResultsOfSearch.length < 8) && (
-          <button className="btn-show-more" onClick={arrowMore} >Show more</button>
+            </Grid>
+          ))}
+        </Grid>
+        {!(arrowMax >= foundResultsOfSearch.length || foundResultsOfSearch.length < 4) && (
+          <Box className={classes.btnContainer}>
+            <Button
+              variant="contained"
+              onClick={arrowMore}
+            >
+              MORE MOVIES
+            </Button>
+          </Box>
         )}
       </div>
-    </section>
+    </Box>
   );
 };
