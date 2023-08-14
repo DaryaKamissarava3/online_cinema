@@ -34,7 +34,6 @@ function* registerUserSaga(action) {
     });
 
     yield put(registerUserSuccess());
-    window.alert('User registration successful!');
   } catch (error) {
     yield put(registerUserFailure(error));
   }

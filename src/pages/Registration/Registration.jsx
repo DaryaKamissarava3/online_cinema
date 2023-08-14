@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../../store/actions/authActions';
+
+import { Progress } from '../../components/SharedComponents/Feedback/Progress';
+import { InformationAlert } from '../../components/SharedComponents/Feedback/InformationAlert';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -14,17 +15,18 @@ import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
+import logo from '../../assets/images/SITE_LOGO.svg';
+
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import MarkEmailReadOutlinedIcon from '@mui/icons-material/MarkEmailReadOutlined';
 import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
 
-import logo from '../../assets/images/SITE_LOGO.svg';
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    padding:theme.spacing(3),
-    marginTop: theme.spacing(6),
+    padding: theme.spacing(3),
+    marginTop: theme.spacing(4),
     display: "flex",
     flexDirection: "column",
     alignItems: "center"
@@ -38,11 +40,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   title: {
-    fontSize: '18px',
-    margin: theme.spacing(2),
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+    fontSize: '12px',
+    margin: theme.spacing(1),
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   form: {
     width: "100%",
@@ -65,7 +67,6 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '15%',
   },
   button: {
-    margin: theme.spacing(3, 0, 2),
     backgroundColor: "#00b8d4"
   },
 }));
@@ -77,11 +78,22 @@ export const Registration = () => {
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const successRegistration = useSelector((state) => state.auth.isRegistering === true);
+  const errorRegistration = useSelector((state) => state.auth.error);
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
-  const handleSubmit = () => {
+  useEffect(() => {
+    if (errorRegistration || successRegistration) {
+      setIsSubmitting(false);
+    }
+  }, [errorRegistration, successRegistration]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     const userData = {
       email,
       password,
@@ -89,8 +101,8 @@ export const Registration = () => {
       lastName,
     };
 
+    setIsSubmitting(true);
     dispatch(registerUser(userData));
-    navigate('/login');
   };
 
   return (
@@ -122,7 +134,7 @@ export const Registration = () => {
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end" className={classes.inputAdornment}>
-                    <AccountCircleOutlinedIcon />
+                    <AccountCircleOutlinedIcon/>
                   </InputAdornment>
                 ),
               }}
@@ -144,7 +156,7 @@ export const Registration = () => {
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end" className={classes.inputAdornment}>
-                    <AccountCircleOutlinedIcon />
+                    <AccountCircleOutlinedIcon/>
                   </InputAdornment>
                 ),
               }}
@@ -200,18 +212,33 @@ export const Registration = () => {
             type="submit"
             fullWidth
             variant="outlined"
-            sx={{ mt: 5,mb:3 }}
+            sx={{mt: 2, mb: 2}}
+            disabled={isSubmitting}
           >
-            CREATE ACCOUNT
+            {isSubmitting ? <Progress/> : 'CREATE ACCOUNT'}
           </Button>
           <Link
             href="/login"
-            sx={{fontSize:'12px'}}
+            sx={{fontSize: '12px'}}
           >
             LOGIN NOW
           </Link>
         </form>
       </Paper>
+      {errorRegistration &&
+        <InformationAlert
+          severity="error"
+          alertTitle="Error"
+          alertText={errorRegistration.code}
+        />
+      }
+      {successRegistration &&
+        <InformationAlert
+          severity="success"
+          alertTitle="Success"
+          alertText="Registration was successful!"
+        />
+      }
     </Container>
   );
 };
