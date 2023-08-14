@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -6,11 +7,9 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
-import {useDispatch, useSelector} from 'react-redux';
+import { deleteTickets } from '../../../store/actions/ticketActions';
 
-import {deleteTickets} from '../../../store/actions/ticketActions';
-
-import {makeStyles} from '@mui/styles';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -23,8 +22,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export const TicketsItem = ({userId, ticketId, filmId, filmDate, ticketQuantity,}) => {
+export const TicketsItem = ({ userId, ticketId, filmId, filmDate, ticketQuantity }) => {
   const classes = useStyles();
+
   const [totalCost, setTotalCost] = useState(0);
   const dispatch = useDispatch();
 

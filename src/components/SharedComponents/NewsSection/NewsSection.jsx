@@ -1,15 +1,15 @@
 import React from 'react';
 
+import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 import mainImage from './../../../assets/images/newsMainImage.svg';
 import newsItems from './../../../assets/arrays/news.json';
 
 import { makeStyles } from '@mui/styles';
-import { NewsItem } from './NewsItem';
+import { NewsItem } from "./NewsItem";
 
 const useStyles = makeStyles((theme) => ({
   descriptionContainer: {

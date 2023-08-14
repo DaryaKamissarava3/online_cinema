@@ -1,19 +1,18 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import {useDispatch, useSelector} from 'react-redux';
-
-import {logoutUser} from '../../../store/actions/authActions';
+import { logoutUser } from '../../../store/actions/authActions';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
 import Link from '@mui/material/Link';
 
-import MenuIcon from '@mui/icons-material/Menu';
-import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import HowToRegOutlinedIcon from '@mui/icons-material/HowToRegOutlined';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
+import MenuIcon from '@mui/icons-material/Menu';
 
 import logo from '../../../assets/images/SITE_LOGO.svg';
 import { makeStyles } from '@mui/styles';
@@ -38,7 +37,6 @@ export const NavBar = () => {
   const classes = useStyles();
 
   const loggedIn = useSelector((state) => state.auth.isLoggedIn === true);
-
   const dispatch = useDispatch();
 
   const handleLogout = () => {

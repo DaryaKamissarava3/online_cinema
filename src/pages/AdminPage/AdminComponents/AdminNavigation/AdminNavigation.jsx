@@ -11,7 +11,7 @@ import Link from '@mui/material/Link';
 
 import image from './../../../../assets/images/nav.jpg';
 
-import {makeStyles} from '@mui/styles';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -26,7 +26,7 @@ export const AdminNavigation = () => {
 
   return (
     <Container>
-      <Box mt={6}>
+      <Box mt={6} mb={8}>
         <Typography variant='h4' className={classes.title}>Admin Page</Typography>
         <Grid container spacing={4} mt={4}>
           <Grid item lg={4}>

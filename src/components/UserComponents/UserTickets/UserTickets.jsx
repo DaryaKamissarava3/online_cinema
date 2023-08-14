@@ -2,18 +2,17 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getTickets } from '../../../store/actions/ticketActions';
-
 import { TicketsItem } from '../TicketsItem';
 
 import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 
 export const UserTickets = () => {
+  const dispatch = useDispatch();
+
   const userId = useSelector((state) => state.user.user.id);
   const tickets = useSelector((state) => state.ticket.tickets);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getTickets(userId));

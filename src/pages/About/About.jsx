@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Footer } from '../../components/SharedComponents/Footer';
 
@@ -46,7 +46,8 @@ const steps = [
 
 export const About = () => {
   const theme = useTheme();
-  const [activeStep, setActiveStep] = React.useState(0);
+
+  const [activeStep, setActiveStep] = useState(0);
   const maxSteps = steps.length;
 
   const handleNext = () => {

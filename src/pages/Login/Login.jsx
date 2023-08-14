@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
 import { loginUser } from '../../store/actions/authActions';
-
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -14,17 +11,16 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
 import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
-import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
-import Paper  from "@mui/material/Paper";
+import Paper from "@mui/material/Paper";
+import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-
-import { makeStyles } from '@mui/styles';
 
 import MarkEmailReadOutlinedIcon from '@mui/icons-material/MarkEmailReadOutlined';
 import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
 
 import logo from './../../assets/images/SITE_LOGO.svg';
+import { makeStyles } from '@mui/styles';
 
 function Copyright() {
   return (
@@ -43,9 +39,9 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(3),
     marginTop: theme.spacing(5),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center"
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
   },
   logo: {
     margin: '0 auto',
@@ -94,8 +90,8 @@ export const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -186,7 +182,7 @@ export const Login = () => {
             </Button>
             <Link
               href="/registration"
-              sx={{fontSize:'12px'}}
+              sx={{fontSize: '12px'}}
             >
               SIGN UP NOW
             </Link>

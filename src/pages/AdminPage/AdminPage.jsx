@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 
-import './AdminPage.css';
-import { SearchFilmResult } from '../../components/SharedComponents/SearchFilmResult';
 import { AdminNavigation } from './AdminComponents/AdminNavigation';
+import { SearchFilmResult } from '../../components/SharedComponents/SearchFilmResult';
+import { ModalForSearch } from "../../components/SharedComponents/ModalForSearch";
 
 export const AdminPage = () => {
   const [resultOfSearch, setResultOfSearch] = useState([]);
@@ -10,11 +10,15 @@ export const AdminPage = () => {
 
   return (
     <>
+      <AdminNavigation />
+      <ModalForSearch
+        updateClassStatus={setClassNameOfSearch}
+        updateDataSearch={setResultOfSearch}
+      />
       <SearchFilmResult
         isActiveBlock={isClassNameOfSearch}
         foundResultsOfSearch={resultOfSearch}
       />
-      <AdminNavigation />
     </>
   );
 };

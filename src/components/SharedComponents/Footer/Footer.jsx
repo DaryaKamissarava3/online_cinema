@@ -5,11 +5,11 @@ import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Container from '@mui/material/Container';
 
-import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 
-import {makeStyles} from '@mui/styles';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({
   footerIcons: {
@@ -31,6 +31,7 @@ const footerCustomer = ['Help & contact us', 'Return', 'Online stores', 'Terms &
 
 export const Footer = () => {
   const classes = useStyles();
+
   return (
     <Container>
       <Box ml={18} mt={12} mb={4}>

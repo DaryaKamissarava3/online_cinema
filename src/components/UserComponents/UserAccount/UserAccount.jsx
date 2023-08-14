@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { requestDeleteAccount, updateUser } from '../../../store/actions/userActions';
@@ -8,16 +8,17 @@ import Button from "@mui/material/Button";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
 
-import {useTheme} from '@mui/styles';
+import { useTheme } from '@mui/styles';
 
 export const UserAccount = () => {
-  const user = useSelector((state) => state.user.user);
-  const dispatch = useDispatch();
   const theme = useTheme();
+  const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.user.user);
 
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);

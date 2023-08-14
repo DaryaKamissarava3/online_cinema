@@ -2,10 +2,10 @@ import React from 'react';
 
 import Box from '@mui/material/Box';
 import Badge from '@mui/material/Badge';
-import { Breadcrumbs } from '@mui/material';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 
-import {makeStyles} from '@mui/styles';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({
   container: {

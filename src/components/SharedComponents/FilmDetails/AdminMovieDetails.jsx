@@ -7,9 +7,9 @@ import { deleteFilm, updateFilm } from '../../../store/actions/filmsActions';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
-import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
+import InputLabel from '@mui/material/InputLabel';
+import TextField from '@mui/material/TextField';
 import OutlinedInput from '@mui/material/OutlinedInput';
 
 import { makeStyles } from '@mui/styles';

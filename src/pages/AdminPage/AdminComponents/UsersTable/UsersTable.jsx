@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-
 import { deleteUser, getUsersList } from "../../../../store/actions/userActions";
 
-import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import { DataGrid } from '@mui/x-data-grid';
 
 const columns = [
   {field: 'id', headerName: 'ID', width: 70},
@@ -32,8 +31,9 @@ const columns = [
 ];
 
 export const UsersTable = () => {
-  const users = useSelector((state) => state.user.users);
   const dispatch = useDispatch();
+
+  const users = useSelector((state) => state.user.users);
 
   useEffect(() => {
     dispatch(getUsersList());

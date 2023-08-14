@@ -1,12 +1,12 @@
 import React from 'react';
-import { makeStyles } from '@mui/styles';
+import { MovieItem } from './MovieItem';
 
-import Carousel from 'react-material-ui-carousel';
 import Box from '@mui/material/Box';
-
-import MovieItem from './MovieItem';
+import Carousel from 'react-material-ui-carousel';
 
 import imagesData from './../../../assets/arrays/carousel.json';
+
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({
   carouselContainer: {
@@ -19,12 +19,14 @@ export const MovieSlider = () => {
   const classes = useStyles();
 
   return (
-    <Box className={classes.carouselContainer}>
-      <Carousel  indicators={false} >
-        {
-          imagesData.map(item => <MovieItem key={item.id} item={item}/>)
-        }
-      </Carousel>
-    </Box>
+    <div className="container">
+      <Box className={classes.carouselContainer}>
+        <Carousel indicators={false}>
+          {
+            imagesData.map(item => <MovieItem key={item.id} item={item}/>)
+          }
+        </Carousel>
+      </Box>
+    </div>
   );
 };

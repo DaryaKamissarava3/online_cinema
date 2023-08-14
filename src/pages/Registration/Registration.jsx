@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import { useDispatch } from 'react-redux';
+
 import { registerUser } from '../../store/actions/authActions';
 
 import Box from '@mui/material/Box';
@@ -14,12 +14,11 @@ import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
-import logo from '../../assets/images/SITE_LOGO.svg';
-
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import MarkEmailReadOutlinedIcon from '@mui/icons-material/MarkEmailReadOutlined';
 import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
 
+import logo from '../../assets/images/SITE_LOGO.svg';
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({

@@ -1,8 +1,8 @@
 import React from 'react';
-import {Paper} from "@mui/material";
 
-const MovieItem = ({item}) => {
+import { Paper } from "@mui/material";
 
+export const MovieItem = ({ item }) => {
   return (
     <Paper sx={{ display: "flex", flexDirection: "column", alignItems: "center"}}>
       <div style={{ width: "100%", overflow: "hidden" }}>
@@ -11,5 +11,3 @@ const MovieItem = ({item}) => {
     </Paper>
   );
 };
-
-export default MovieItem;

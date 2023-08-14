@@ -1,11 +1,10 @@
 import React from 'react';
-
-import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
-import {Paper} from '@mui/material';
-
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import {Paper} from '@mui/material';
 
 import UserMovieDetails from './UserMovieDetails';
 import AdminMovieDetails from './AdminMovieDetails';

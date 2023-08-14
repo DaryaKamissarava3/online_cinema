@@ -1,18 +1,16 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import {getFilmList} from '../../../store/actions/filmsActions';
-
-import {FilmsItem} from '../FilmsItem';
+import { getFilmList } from '../../../store/actions/filmsActions';
+import { FilmsItem } from '../FilmsItem';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
 
-import './Films.css';
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({
