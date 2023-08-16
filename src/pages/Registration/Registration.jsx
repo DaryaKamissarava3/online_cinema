@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { registerUser } from '../../store/actions/authActions';
 
 import { Progress } from '../../components/SharedComponents/Feedback/Progress';
@@ -84,6 +85,7 @@ export const Registration = () => {
   const errorRegistration = useSelector((state) => state.auth.error);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (errorRegistration || successRegistration) {

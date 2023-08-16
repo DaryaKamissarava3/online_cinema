@@ -70,8 +70,6 @@ function* loginUserSaga(action) {
 
     yield put(loginUserSuccess());
     yield put(setUser(userData));
-
-    window.alert('User login successful!');
   } catch (error) {
     yield put(loginUserFailure());
   }
@@ -80,6 +78,7 @@ function* loginUserSaga(action) {
 function* logoutUserSaga() {
   yield put(logoutUserSuccess());
   yield put(clearUser());
+  yield put(registerUserFailure())
 }
 
 export function* authSaga() {

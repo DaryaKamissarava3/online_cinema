@@ -21,6 +21,7 @@ import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
 
 import logo from './../../assets/images/SITE_LOGO.svg';
 import { makeStyles } from '@mui/styles';
+import { Progress } from "../../components/SharedComponents/Feedback/Progress";
 
 function Copyright() {
   return (
@@ -92,9 +93,12 @@ export const Login = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    setIsSubmitting(true);
     dispatch(loginUser({email, password}));
     navigate('/');
   };
@@ -177,8 +181,9 @@ export const Login = () => {
               fullWidth
               variant="contained"
               sx={{mb: 3}}
+              disabled={isSubmitting}
             >
-              LOGIN NOW
+              {isSubmitting ? <Progress/> : 'LOGIN NOW'}
             </Button>
             <Link
               href="/registration"
